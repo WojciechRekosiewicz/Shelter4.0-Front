@@ -1,8 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router'
-import { HttpClientModule } from '@angular/common/http';
 
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
@@ -15,30 +12,26 @@ import { RepositoryService } from './shared/services/repository.service';
 import { ErrorHandlerService } from './shared/services/error-handler.service';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     MenuComponent,
-    NotFoundComponent,
+    HomeComponent,
     InternalServerComponent,
-    ErrorComponent
+    ErrorComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      { path: 'home', component: HomeComponent },
-      { path: 'advert', loadChildren: "./advert/advert.module#AdvertModule" },
-      { path: 'account', loadChildren: "./account/account.module#AccountModule" },
-      { path: '404', component: NotFoundComponent },
-      { path: '500', component: InternalServerComponent },
-      { path: 'connection-error', component: ErrorComponent },
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: '**', redirectTo: '/404', pathMatch: 'full' }
-    ])
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [
     EnvironmentUrlService,
