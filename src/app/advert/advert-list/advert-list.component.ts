@@ -15,11 +15,13 @@ import { AdvertShort } from './../../_interfaces/advert-short.model';
 export class AdvertListComponent implements OnInit {
   public adverts: AdvertShort[];
   public errorMessage: string = '';
+  public userId: string = '';
 
   constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
     this.getAllOwners();
+    this.updateUserId();
   }
 
   public getAllOwners() {
@@ -48,5 +50,19 @@ export class AdvertListComponent implements OnInit {
   public redirectToDeletePage(id) {
     let deleteUrl: string = `/advert/delete/${id}`;
     this.router.navigate([deleteUrl]);
+  }
+
+  public updateUserId() {
+    let jwtToken = localStorage.getItem('jwt');
+
+    if (jwtToken != null) {
+      let decodedJwtJsonData = window.atob(jwtToken.split('.')[1]);
+      let decodedJwtData = JSON.parse(decodedJwtJsonData);
+      this.userId = decodedJwtData.id;
+    }
+  }
+
+  public isAuthorised(authorId) {
+    return authorId == this.userId;
   }
 }
