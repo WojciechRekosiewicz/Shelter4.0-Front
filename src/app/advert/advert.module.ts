@@ -13,7 +13,13 @@ import { AdvertDeleteComponent } from './advert-delete/advert-delete.component';
 
 
 @NgModule({
-  declarations: [AdvertListComponent, AdvertDetailsComponent, AdvertCreateComponent, AdvertUpdateComponent, AdvertDeleteComponent],
+  declarations: [
+    AdvertListComponent,
+    AdvertDetailsComponent,
+    AdvertCreateComponent,
+    AdvertUpdateComponent,
+    AdvertDeleteComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,

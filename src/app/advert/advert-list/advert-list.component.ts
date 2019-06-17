@@ -16,7 +16,9 @@ export class AdvertListComponent implements OnInit {
   public adverts: AdvertShort[];
   public errorMessage: string = '';
 
-  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router) { }
+  constructor(private repository: RepositoryService,
+    private errorHandler: ErrorHandlerService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getAllOwners();

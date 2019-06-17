@@ -13,8 +13,10 @@ export class AdvertDetailsComponent implements OnInit {
   public advert: Advert;
   public errorMessage: string = '';
 
-  constructor(private repository: RepositoryService, private router: Router,
-    private activeRoute: ActivatedRoute, private errorHandler: ErrorHandlerService) { }
+  constructor(private repository: RepositoryService,
+    private router: Router,
+    private activeRoute: ActivatedRoute,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.getAdvertDetails()

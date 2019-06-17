@@ -14,7 +14,9 @@ export class AdvertCreateComponent implements OnInit {
   public errorMessage: string = '';
   public advertForm: FormGroup;
 
-  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router) { }
+  constructor(private repository: RepositoryService,
+    private errorHandler: ErrorHandlerService,
+    private router: Router) { }
 
   ngOnInit() {
     this.advertForm = new FormGroup({
