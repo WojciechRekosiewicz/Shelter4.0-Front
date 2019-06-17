@@ -10,3 +10,7 @@ em {
 .ng-valid.ng-touched {
   border-color: green;
 }
+
+body {
+  background-image: url('file:///C:\Users\wojte\source\repos\Shelter4.0-Front\src\assets\img\site-background.jpg');
+}
