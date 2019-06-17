@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\account\\account-register",
+    "\\src\\app\\advert",
+    "\\src\\app\\advert\\advert-list"
+  ],
+  "SelectedNode": "\\src\\app\\advert\\advert-list\\advert-list.component.css",
+  "PreviewInSolutionExplorer": false
+}

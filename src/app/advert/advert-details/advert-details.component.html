@@ -1,0 +1,45 @@
+<div class="well">
+  <button type="button" id="details" class="btn btn-default"
+          (click)="returnBack()">
+    Return
+  </button>
+  <div class="row">
+    <div class="col-md-12">
+      <img src="{{ advert?.imageUrl }}" class="img-thumbnail" [alt]="advert?.title" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Advert Title:</strong>
+    </div>
+    <div class="col-md-3">
+      {{advert?.title}}
+    </div>
+  </div>
+
+  <!-- Example of ng-template usage -->
+  <div class="row" *ngIf='advert?.reservingId == null; else reserved'>
+    <span class="label label-success badge-pill">Available</span>
+  </div>
+  <ng-template #reserved>
+    <span class="label label-danger badge-pill">Reserved</span>
+  </ng-template>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Short Description:</strong>
+    </div>
+    <div class="col-md-3">
+      {{advert?.shortDescription}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Long Description:</strong>
+    </div>
+    <div class="col-md-3">
+      {{advert?.longDescription}}
+    </div>
+  </div>
+</div>

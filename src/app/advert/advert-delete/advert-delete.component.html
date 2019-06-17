@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10 well">
+      <div class="row">
+        <div class="col-md-3">
+          <label for="title" class="control-label">Adverts title:</label>
+        </div>
+        <div class="col-md-7">
+          <span name="title">
+            {{advert?.title}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <img src="{{ advert?.imageUrl }}" class="img-thumbnail" [alt]="advert?.title" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="shortDescription" class="control-label">Short description</label>
+        </div>
+        <div class="col-md-7">
+          <span name="shortDescription">
+            {{advert?.shortDescription}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="longDescription" class="control-label">Long description</label>
+        </div>
+        <div class="col-md-7">
+          <span name="longDescription">
+            {{advert?.longDescription}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-offset-8 col-md-1">
+        <button type="submit" class="btn btn-info" (click)="deleteAdvert()">Delete</button>
+      </div>
+      <div class="col-md-1">
+        <button type="button" class="btn btn-danger" (click)="redirectToAdvertList()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <app-success-modal [modalHeaderText]="'Success message'"
+                     [modalBodyText]="'Action completed successfully'"
+                     [okButtonText]="'OK'"
+                     (redirectOnOK)="redirectToAdvertList()"></app-success-modal>
+
+  <app-error-modal [modalHeaderText]="errorTitle"
+                   [modalBodyText]="errorMessage"
+                   [okButtonText]="'OK'"></app-error-modal>
+  <br>
+</div>
