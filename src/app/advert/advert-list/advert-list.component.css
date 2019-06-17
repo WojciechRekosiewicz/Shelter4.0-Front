@@ -1,3 +1,6 @@
+.content:hover {
+  background-color: gray;
+}
 .card {
   width: 18rem;
   display: inline-block;

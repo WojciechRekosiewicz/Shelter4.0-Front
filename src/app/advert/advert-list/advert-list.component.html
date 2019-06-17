@@ -4,12 +4,12 @@
       <div class="col-auto mb-4" *ngFor="let advert of adverts">
         <div class="card">
           <div class="button-container">
-            <button type="button" id="details" class="btn btn-warning" (click)="getAdvertDetails(advert.advertId)">Details</button>
+           <!-- <button type="button" id="details" class="btn btn-warning" (click)="getAdvertDetails(advert.advertId)">Details</button>-->
             <button type="button" id="update" class="btn btn-success" (click)="redirectToUpdatePage(advert.advertId)">Update</button>
             <button type="button" id="delete" class="btn btn-danger" (click)="redirectToDeletePage(advert.advertId)">Delete</button>
           </div>
 
-          <div class="card-body">
+          <div class="card-body content" (click)="getAdvertDetails(advert.advertId)">
             <img src="{{advert.imageUrl}}" class="card-img-top img-fluid" [alt]="advert.title" />
 
             <span *ngIf='advert.reservingId == null; else reserved' class="label label-success badge-pill">Available</span>
