@@ -1,34 +1,45 @@
-<div class="container mt-4">
-  <div class="row">
-    <div class="card-deck">
-      <div class="col-auto mb-4" *ngFor="let advert of adverts">
-        <div class="card">
-          <div class="button-container">
-            <button type="button" id="details" class="btn btn-warning" (click)="getAdvertDetails(advert.advertId)">Details</button>
-            <button type="button" id="update" class="btn btn-success" (click)="redirectToUpdatePage(advert.advertId)">Update</button>
-            <button type="button" id="delete" class="btn btn-danger" (click)="redirectToDeletePage(advert.advertId)">Delete</button>
+<div class="advert-list">
+  <div class="container mt-3">
+    <div class="row">
+      <div class="card-deck">
+        <div class="col-auto mb-4" *ngFor="let advert of adverts">
+
+          <div class="card-container">
+            <div class="card-extensions">
+              <span *ngIf='advert.reservingId == null; else reserved' class="badge badge-success float-left">Available</span>
+              <ng-template #reserved>
+                <span class="badge badge-danger">Reserved</span>
+              </ng-template>
+
+              <div *ngIf="isAuthorised(advert.authorId)" class="button-container float-right">
+                <i class="far fa-edit text-dark" id="update" (click)="redirectToUpdatePage(advert.advertId)" title="edit"></i>
+                <i class="far fa-trash-alt text-dark" id="delete" (click)="redirectToDeletePage(advert.advertId)" title="delete"></i>
+              </div>
+            </div>
+
+            <div class="card shadow mb-5 bg-white rounded" (click)="getAdvertDetails(advert.advertId)">
+              <div class="card-img-top">
+                <div class="thumbnail">
+                  <img src="{{advert.imageUrl}}" alt="Image" />
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ advert.title }}</h5>
+                <p class="card-text">{{ advert.shortDescription }}</p>
+              </div>
+            </div>
           </div>
 
-          <div class="card-body">
-            <img src="{{advert.imageUrl}}" class="card-img-top img-fluid" [alt]="advert.title" />
-
-            <span *ngIf='advert.reservingId == null; else reserved' class="label label-success badge-pill">Available</span>
-            <ng-template #reserved>
-              <span class="label label-danger badge-pill">Reserved</span>
-            </ng-template>
-
-            <h4 class="card-title">{{ advert.title }}</h4>
-            <h5 class="card-subtitle">{{ advert.shortDescription }}</h5>
-          </div>
         </div>
       </div>
-
-      <app-success-modal [modalHeaderText]="'Success message'"
-                         [modalBodyText]="'Action completed successfully'"
-                         [okButtonText]="'OK'"></app-success-modal>
-
-      <app-error-modal [modalHeaderText]="errorTitle"
-                       [modalBodyText]="errorMessage"
-                       [okButtonText]="'OK'"></app-error-modal>
     </div>
+  </div>
 </div>
+
+<app-success-modal [modalHeaderText]="'Success message'"
+                    [modalBodyText]="'Action completed successfully'"
+                    [okButtonText]="'OK'"></app-success-modal>
+
+<app-error-modal [modalHeaderText]="errorTitle"
+                  [modalBodyText]="errorMessage"
+                  [okButtonText]="'OK'"></app-error-modal>
