@@ -90,8 +90,4 @@ export class AdvertUpdateComponent implements OnInit {
         })
       )
   }
-
-  public redirectToAdvertList() {
-    this.router.navigate(['/advert/list']);
-  }
 }
