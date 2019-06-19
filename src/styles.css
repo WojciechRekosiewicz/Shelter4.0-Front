@@ -7,3 +7,36 @@ html {
 body {
 	background-color: transparent;
 }
+
+/*
+  Common advert styling
+*/
+
+.advert-container {
+  padding: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.advert-button-container {
+  margin-right: 2px;
+}
+
+.card {
+    position:center;
+}
+
+.card-promoting-card {
+  height: 200px;
+}
+
+.advert-body-container img {
+  width: 800px;
+  height: 600px;
+}
+
+.advert-body-container {
+  margin: auto;
+  word-wrap: break-word;
+}
