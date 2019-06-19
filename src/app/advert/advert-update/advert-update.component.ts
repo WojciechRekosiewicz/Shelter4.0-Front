@@ -81,6 +81,7 @@ export class AdvertUpdateComponent implements OnInit {
     let apiUrl = `api/adverts/${this.advert.advertId}`;
     this.repository.update(apiUrl, this.advert)
       .subscribe(res => {
+        this.successMessage = res['message'];
         $('#successModal').modal();
       },
         (error => {
