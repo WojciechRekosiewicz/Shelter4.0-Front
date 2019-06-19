@@ -13,11 +13,11 @@ import { ErrorComponent } from './error-pages/error/error.component';
       { path: 'home', component: HomeComponent },
       { path: 'advert', loadChildren: "./advert/advert.module#AdvertModule" },
       { path: 'account', loadChildren: "./account/account.module#AccountModule" },
-      { path: '404', component: NotFoundComponent },
+   //   { path: '404', component: NotFoundComponent },
       { path: '500', component: InternalServerComponent },
       { path: 'connection-error', component: ErrorComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: '**', redirectTo: '/404', pathMatch: 'full' }
+      //{ path: '**', redirectTo: '/404', pathMatch: 'full' }
     ])
   ],
   exports: [RouterModule]

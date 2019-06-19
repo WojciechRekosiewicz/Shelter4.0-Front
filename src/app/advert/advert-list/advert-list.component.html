@@ -35,7 +35,9 @@
               </div>
             </div>
 
-            <div class="card shadow mb-5 bg-white rounded" (click)="getAdvertDetails(advert.advertId)">
+            <div class="card shadow mb-5 bg-white rounded" [routerLink]="['/advert/details', advert.advertId]">
+              <!--[routerLink]="['/details', advert.advertId]"-->
+              <!--(click)="getAdvertDetails(advert.advertId)"-->
               <div class="card-img-top">
                 <div class="thumbnail">
                   <img src="{{advert.imageUrl}}" alt="Image" />
