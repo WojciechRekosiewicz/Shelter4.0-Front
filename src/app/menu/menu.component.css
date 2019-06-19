@@ -1,4 +1,20 @@
 .navbar {
-  margin: 1.5rem;
   border-radius: 5px;
+}
+
+.navbar-logo img {
+  width: 100px;
+  height: auto;
+}
+
+.nav-item {
+  transition: 0.5s;
+}
+
+.nav-item:hover {
+  background-color: rgb(128, 128, 128);
+}
+
+.nav-item:active {
+  border: 1px solid white;
 }
