@@ -61,7 +61,7 @@ export class AdvertUpdateComponent implements OnInit {
     return false;
   }
 
-  public redirectToOwnerList() {
+  public redirectToAdvertList() {
     this.router.navigate(['/advert/list']);
   }
 
