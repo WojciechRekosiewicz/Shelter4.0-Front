@@ -20,15 +20,15 @@ export class AdvertListComponent implements OnInit {
   constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
-    this.getAllOwners();
+    this.getAllAdverts();
     this.updateUserId();
   }
 
-  public getAllOwners() {
+  public getAllAdverts() {
     let apiAddress: string = "api/adverts";
     this.repository.getData(apiAddress)
       .subscribe(res => {
-        this.adverts = res as AdvertShort[];
+        this.adverts = res['result'] as AdvertShort[];
       },
         (error) => {
           this.errorHandler.handleError(error);
