@@ -11,18 +11,24 @@ import { ErrorHandlerService } from './../../shared/services/error-handler.servi
 })
 export class AdvertDetailsComponent implements OnInit {
   public advert: Advert;
+  public userId: string = '';
+  public advertId: string = '';
   public errorMessage: string = '';
 
   constructor(private repository: RepositoryService, private router: Router,
     private activeRoute: ActivatedRoute, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
+    this.updateAdvertId();
     this.getAdvertDetails()
+    this.updateUserId();
   }
 
+  public updateAdvertId() {
+    this.advertId = this.activeRoute.snapshot.params['id'];
+  }
   getAdvertDetails() {
-    let id: string = this.activeRoute.snapshot.params['id'];
-    let apiUrl: string = `api/adverts/${id}`;
+    let apiUrl: string = `api/adverts/${this.advertId}`;
 
     this.repository.getData(apiUrl)
       .subscribe(res => {
