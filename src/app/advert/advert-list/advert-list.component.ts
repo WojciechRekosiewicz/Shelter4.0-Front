@@ -15,7 +15,7 @@ import { Advert } from 'src/app/_interfaces/advert.model';
 })
 export class AdvertListComponent implements OnInit {
   public adverts: AdvertShort[] = [];
-  filteredProducts: AdvertShort[] = [];
+  filteredAdverts: AdvertShort[] = [];
   public errorMessage: string = '';
   public userId: string = '';
 
@@ -25,7 +25,7 @@ export class AdvertListComponent implements OnInit {
   }
   set listFilter(value: string) {
     this._listFilter = value;
-    this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.adverts;
+    this.filteredAdverts = this.listFilter ? this.performFilter(this.listFilter) : this.adverts;
   }
 
   constructor(private repository: RepositoryService,
@@ -41,15 +41,25 @@ export class AdvertListComponent implements OnInit {
 
 
     let apiAddress: string = "api/adverts";
-    this.repository.getData(apiAddress)
-      .subscribe(res => {
-        this.adverts = res as AdvertShort[];
-        this.filteredProducts = this.performFilter(this.listFilter);
+    //this.repository.getData(apiAddress)
+    //  .subscribe(res => {
+    //    this.adverts = res as AdvertShort[];
+    //    this.filteredProducts = this.performFilter(this.listFilter);
+    //  },
+    //    (error) => {
+    //      this.errorHandler.handleError(error);
+    //      this.errorMessage = this.errorHandler.errorMessage;
+    //    })
+
+    this.repository.getData(apiAddress).subscribe(
+      adverts => {
+        this.adverts = adverts;
+        this.filteredAdverts = this.performFilter(this.listFilter);
       },
-        (error) => {
-          this.errorHandler.handleError(error);
-          this.errorMessage = this.errorHandler.errorMessage;
-        })
+      error => this.errorMessage = <any>error
+    );
+
+
   }
 
 
