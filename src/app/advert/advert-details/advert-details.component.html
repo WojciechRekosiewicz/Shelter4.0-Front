@@ -1,6 +1,7 @@
 <div class="well">
   <button type="button" id="details" class="btn btn-default"
-          (click)="returnBack()">
+          [routerLink]="['/advert/list']" queryParamsHandling="preserve">
+   <!-- (click)="returnBack()"-->
     Return
   </button>
   <div class="row">
