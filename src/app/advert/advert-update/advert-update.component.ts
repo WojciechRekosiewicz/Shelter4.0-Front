@@ -22,16 +22,16 @@ export class AdvertUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.advertForm = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(40), Validators.minLength(6)]),
+      title: new FormControl('', [Validators.required, Validators.maxLength(40), Validators.minLength(10)]),
       shortDescription: new FormControl('', [Validators.required, Validators.maxLength(70), Validators.minLength(10)]),
       longDescription: new FormControl('', [Validators.required, Validators.maxLength(450), Validators.minLength(30)]),
       imageUrl: new FormControl('', [Validators.required])
     });
 
-    this.getOwnerById();
+    this.getAdvertById();
   }
 
-  private getOwnerById() {
+  private getAdvertById() {
     let advertId: string = this.activeRoute.snapshot.params['id'];
 
     let advertByIdUrl: string = `api/adverts/${advertId}`;
