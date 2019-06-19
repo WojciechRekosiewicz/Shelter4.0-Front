@@ -12,6 +12,7 @@ import { Advert } from './../../_interfaces/advert.model';
 })
 export class AdvertUpdateComponent implements OnInit {
   public errorMessage: string = '';
+  public successMessage: string = '';
   public advert: Advert;
   public advertForm: FormGroup;
 
