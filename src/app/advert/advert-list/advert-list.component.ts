@@ -14,8 +14,8 @@ import { Advert } from 'src/app/_interfaces/advert.model';
   styleUrls: ['./advert-list.component.css']
 })
 export class AdvertListComponent implements OnInit {
-  public adverts: AdvertShort[] = [];
-  filteredAdverts: AdvertShort[] = [];
+  pageTitle = 'Advert List';
+
   public errorMessage: string = '';
   public userId: string = '';
 
@@ -28,6 +28,9 @@ export class AdvertListComponent implements OnInit {
     this.filteredAdverts = this.listFilter ? this.performFilter(this.listFilter) : this.adverts;
   }
 
+  adverts: AdvertShort[] = [];
+  filteredAdverts: AdvertShort[] = [];
+
   constructor(private repository: RepositoryService,
     private errorHandler: ErrorHandlerService,
     private router: Router,
@@ -35,7 +38,6 @@ export class AdvertListComponent implements OnInit {
 
   ngOnInit() {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
-
 
     this.updateUserId();
 
@@ -52,7 +54,7 @@ export class AdvertListComponent implements OnInit {
     //    })
 
     this.repository.getData(apiAddress).subscribe(
-      adverts => {
+      (adverts: any) => {
         this.adverts = adverts;
         this.filteredAdverts = this.performFilter(this.listFilter);
       },
@@ -60,6 +62,7 @@ export class AdvertListComponent implements OnInit {
     );
 
 
+  
   }
 
 
