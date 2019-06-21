@@ -18,17 +18,17 @@ export class AdvertListComponent implements OnInit {
   public errorMessage: string = '';
   public userId: string = '';
 
-  _listFilter = '';
-  get listFilter(): string {
-    return this._listFilter;
-  }
-  set listFilter(value: string) {
-    this._listFilter = value;
-    this.filteredAdverts = this.listFilter ? this.performFilter(this.listFilter) : this.adverts;
-  }
+  //_listFilter = '';
+  //get listFilter(): string {
+  //  return this._listFilter;
+  //}
+  //set listFilter(value: string) {
+  //  this._listFilter = value;
+  //  this.filteredAdverts = this.listFilter ? this.performFilter(this.listFilter) : this.adverts;
+  //}
 
   adverts: AdvertShort[] = [];
-  filteredAdverts: AdvertShort[] = [];
+ // filteredAdverts: AdvertShort[] = [];
 
   constructor(private repository: RepositoryService,
     private errorHandler: ErrorHandlerService,
@@ -36,7 +36,7 @@ export class AdvertListComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
+    //this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
 
     this.updateUserId();
 
@@ -55,21 +55,20 @@ export class AdvertListComponent implements OnInit {
     this.repository.getData(apiAddress).subscribe(
       (adverts: any) => {
         this.adverts = adverts;
-        this.filteredAdverts = this.performFilter(this.listFilter);
+        //this.filteredAdverts = this.performFilter(this.listFilter);
       },
       error => this.errorMessage = <any>error
     );
-
 
   
   }
 
 
-  performFilter(filterBy: string): AdvertShort[] {
-    filterBy = filterBy.toLocaleLowerCase();
-    return this.adverts.filter((advert: AdvertShort) =>
-      advert.title.toLocaleLowerCase().indexOf(filterBy) !== -1);
-  }
+  //performFilter(filterBy: string): AdvertShort[] {
+  //  filterBy = filterBy.toLocaleLowerCase();
+  //  return this.adverts.filter((advert: AdvertShort) =>
+  //    advert.title.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  //}
 
   //public getAllOwners() {
   //  let apiAddress: string = "api/adverts";

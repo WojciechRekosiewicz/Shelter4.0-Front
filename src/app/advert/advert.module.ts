@@ -12,6 +12,8 @@ import { AdvertUpdateComponent } from './advert-update/advert-update.component';
 import { AdvertDeleteComponent } from './advert-delete/advert-delete.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { FilterPipe } from './advert-list/filter.pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -22,13 +24,14 @@ import { BrowserModule } from '@angular/platform-browser';
     AdvertCreateComponent,
     AdvertUpdateComponent,
     AdvertDeleteComponent,
-    //FilterPipe
+    FilterPipe
     ],
   imports: [
+    Ng2SearchPipeModule,
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-  //  FormsModule,
+    FormsModule,
    // BrowserModule,
     RouterModule.forChild([
       { path: 'list', component: AdvertListComponent },

@@ -1,15 +1,41 @@
 
-<input placeholder="search text goes here">
-<ul>
-  <li *ngFor="let a of adverts">
-    {{a.title}}
-  </li>
-</ul>
+<!--<div class="container text-center">
+  <h1>{{title}}</h1>
+</div>-->
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="search-hero">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching">
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>desc</th>
+          <th>x</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of adverts | filter:searchText">
+          <td>{{a.title}}</td>
+          <!--<td>{{a.short}}</td>
+          <td>{{hero.country}}</td>-->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
 
 
 <div class="advert-list">
 
-  <div class="row">
+  <!--<div class="row">
     <div class="col-md-2">Filter by:</div>
     <div class="col-md-4">
       <input type="text" />
@@ -20,47 +46,47 @@
       <div class="col-md-6">
         <h4>Filtered by: {{listFilter}}</h4>
       </div>
-    </div>
+    </div>-->
 
-    <div class="container mt-3">
-      <div class="row">
-        <div class="card-deck">
-          <div class="col-auto mb-4" *ngFor="let advert of adverts">
+  <div class="container mt-3">
+    <div class="row">
+      <div class="card-deck">
+        <div class="col-auto mb-4" *ngFor="let advert of adverts">
 
-            <div class="card-container">
-              <div class="card-extensions">
-                <span *ngIf='advert.reservingId == null; else reserved' class="badge badge-success float-left">Available</span>
-                <ng-template #reserved>
-                  <span class="badge badge-danger">Reserved</span>
-                </ng-template>
+          <div class="card-container">
+            <div class="card-extensions">
+              <span *ngIf='advert.reservingId == null; else reserved' class="badge badge-success float-left">Available</span>
+              <ng-template #reserved>
+                <span class="badge badge-danger">Reserved</span>
+              </ng-template>
 
-                <div *ngIf="isAuthorised(advert.authorId)" class="button-container float-right">
-                  <i class="far fa-edit text-dark" id="update" (click)="redirectToUpdatePage(advert.advertId)" title="edit"></i>
-                  <i class="far fa-trash-alt text-dark" id="delete" (click)="redirectToDeletePage(advert.advertId)" title="delete"></i>
-                </div>
-              </div>
-
-              <div class="card shadow mb-5 bg-white rounded" [routerLink]="['/advert/details', advert.advertId]"
-                   [queryParams]="{filterBy: listFilter}">
-                <!--[routerLink]="['/details', advert.advertId]"-->
-                <!--(click)="getAdvertDetails(advert.advertId)"-->
-                <div class="card-img-top">
-                  <div class="thumbnail">
-                    <img src="{{advert.imageUrl}}" alt="Image" />
-                  </div>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">{{ advert.title }}</h5>
-                  <p class="card-text">{{ advert.shortDescription }}</p>
-                </div>
+              <div *ngIf="isAuthorised(advert.authorId)" class="button-container float-right">
+                <i class="far fa-edit text-dark" id="update" (click)="redirectToUpdatePage(advert.advertId)" title="edit"></i>
+                <i class="far fa-trash-alt text-dark" id="delete" (click)="redirectToDeletePage(advert.advertId)" title="delete"></i>
               </div>
             </div>
 
+            <div class="card shadow mb-5 bg-white rounded" [routerLink]="['/advert/details', advert.advertId]"
+                 [queryParams]="{filterBy: listFilter}">
+              <!--[routerLink]="['/details', advert.advertId]"-->
+              <!--(click)="getAdvertDetails(advert.advertId)"-->
+              <div class="card-img-top">
+                <div class="thumbnail">
+                  <img src="{{advert.imageUrl}}" alt="Image" />
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{ advert.title }}</h5>
+                <p class="card-text">{{ advert.shortDescription }}</p>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
   </div>
+  <!--</div>-->
 </div>
 
 <app-success-modal [modalHeaderText]="'Success message'"

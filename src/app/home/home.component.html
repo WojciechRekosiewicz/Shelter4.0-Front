@@ -9,14 +9,14 @@
 <div class="container">
   <div class="row">
     <div class="search-hero">
-      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a hero by id or name or country">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching">
     </div>
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Hero Name</th>
-          <th>Country</th>
+          <th>Title</th>
+          <th>desc</th>
+          <th>x</th>
         </tr>
       </thead>
       <tbody>
@@ -33,15 +33,3 @@
 
 
 
-<!--<div class="md-form">
-  <input type="search" [(ngModel)]="searchText" placeholder="Search text">
-</div>
-<ul *ngFor="let a of adverts | filter: searchText">
-  <li>{{a.title}}</li>
-</ul>-->
-<!--<input [(ngModel)]="searchText" placeholder="search text goes here">
-<ul>
-  <li *ngFor="let a of adverts | filter : searchText">
-    {{a.title}}
-  </li>
-</ul>-->
