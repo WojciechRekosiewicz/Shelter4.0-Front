@@ -7,7 +7,6 @@ import { ErrorHandlerService } from './../../shared/services/error-handler.servi
 import { AdvertShort } from './../../_interfaces/advert-short.model';
 import { Advert } from 'src/app/_interfaces/advert.model';
 
-
 @Component({
   selector: 'app-advert-list',
   templateUrl: './advert-list.component.html',

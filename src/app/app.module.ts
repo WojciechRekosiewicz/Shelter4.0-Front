@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FilterPipe } from './filter.pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -24,9 +26,11 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     InternalServerComponent,
     ErrorComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FilterPipe
   ],
   imports: [
+    Ng2SearchPipeModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,

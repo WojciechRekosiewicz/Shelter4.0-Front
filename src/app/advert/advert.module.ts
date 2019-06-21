@@ -10,14 +10,26 @@ import { AdvertDetailsComponent } from './advert-details/advert-details.componen
 import { AdvertCreateComponent } from './advert-create/advert-create.component';
 import { AdvertUpdateComponent } from './advert-update/advert-update.component';
 import { AdvertDeleteComponent } from './advert-delete/advert-delete.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 
 @NgModule({
-  declarations: [AdvertListComponent, AdvertDetailsComponent, AdvertCreateComponent, AdvertUpdateComponent, AdvertDeleteComponent],
+  declarations: [
+    AdvertListComponent,
+    AdvertDetailsComponent,
+    AdvertCreateComponent,
+    AdvertUpdateComponent,
+    AdvertDeleteComponent,
+    //FilterPipe
+    ],
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
+  //  FormsModule,
+   // BrowserModule,
     RouterModule.forChild([
       { path: 'list', component: AdvertListComponent },
       { path: 'details/:id', component: AdvertDetailsComponent },
