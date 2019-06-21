@@ -3,33 +3,6 @@
 </div>
 
 
-<div class="container text-center">
-  <h1>{{title}}</h1>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="search-hero">
-      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching">
-    </div>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>desc</th>
-          <th>x</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let a of adverts | filter:searchText">
-          <td>{{a.title}}</td>
-          <!--<td>{{a.short}}</td>
-          <td>{{hero.country}}</td>-->
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
 
 
 
