@@ -16,7 +16,6 @@ import { UserAdvertDetailsComponent } from './user-advert-details/user-advert-de
 import { UserAdvertUpdateComponent } from './user-advert-update/user-advert-update.component';
 import { UserAdvertDeleteComponent } from './user-advert-delete/user-advert-delete.component';
 import { UserFilterPipe } from './user-advert-list/user-filter.pipe';
-//import { FilterPipe } from '../advert/advert-list/filter.pipe';
 
 
 
