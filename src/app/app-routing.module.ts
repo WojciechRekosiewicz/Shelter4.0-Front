@@ -12,6 +12,7 @@ import { ErrorComponent } from './error-pages/error/error.component';
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'advert', loadChildren: "./advert/advert.module#AdvertModule" },
+      { path: 'user', loadChildren: "./user-advert/user-advert.module#UserAdvertModule" },
       { path: 'account', loadChildren: "./account/account.module#AccountModule" },
       { path: '404', component: NotFoundComponent },
       { path: '500', component: InternalServerComponent },
