@@ -57,6 +57,30 @@ export class AdvertDetailsComponent implements OnInit {
   }
 
 
+  private getUserId() {
+    let jwtToken = localStorage.getItem('jwt');
+
+    if (jwtToken != null) {
+      let decodedJwtJsonData = window.atob(jwtToken.split('.')[1]);
+      let decodedJwtData = JSON.parse(decodedJwtJsonData);
+      return decodedJwtData.id;
+    }
+  }
+
+
+  public canReserve() {
+    let userId = this.getUserId();
+    if (userId == null) {
+      return false;
+    }
+    else {
+      return userId != this.advert.authorId;
+    }
+  }
+
+  reserveAdvert() {
+  }
+
   public returnBack() {
     let listUrl: string = '/advert/list'
     this.router.navigate([listUrl]);
