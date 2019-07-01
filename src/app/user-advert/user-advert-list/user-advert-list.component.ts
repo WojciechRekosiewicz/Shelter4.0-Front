@@ -6,12 +6,12 @@ import { ErrorHandlerService } from './../../shared/services/error-handler.servi
 import { AdvertShort } from './../../_interfaces/advert-short.model';
 
 @Component({
-  selector: 'app-advert-list',
-  templateUrl: './advert-list.component.html',
-  styleUrls: ['./advert-list.component.css']
+  selector: 'app-user-advert-list',
+  templateUrl: './user-advert-list.component.html',
+  styleUrls: ['./user-advert-list.component.css']
 })
-export class AdvertListComponent implements OnInit {
-  pageTitle = 'Advert List';
+export class UserAdvertListComponent implements OnInit {
+  pageTitle = 'User Advert List';
 
   public errorMessage: string = '';
   public userId: string = '';
