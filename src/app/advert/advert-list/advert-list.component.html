@@ -1,45 +1,62 @@
-<div class="advert-list">
-  <div class="container mt-3">
-    <div class="row">
-      <div class="card-deck">
-        <div class="col-auto mb-4" *ngFor="let advert of adverts">
+<div *ngIf="loading else loaded">
+  <ngx-spinner bdOpacity=0.9
+               bdColor="#333"
+               size="medium"
+               color="#fff"
+               type="ball-clip-rotate-multiple"
+               [fullScreen]="false">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+</div>
 
-          <div class="card-container">
-            <div class="card-extensions">
-              <span *ngIf='advert.reservingId == null; else reserved' class="badge badge-success float-left">Available</span>
-              <ng-template #reserved>
-                <span class="badge badge-danger">Reserved</span>
-              </ng-template>
+<ng-template #loaded>
+  <div class="advert-list">
+    <div class="container mt-3">
+      <div class="row">
+        <div class="card-deck">
+          <div class="col-auto mb-4" *ngFor="let advert of adverts">
 
-              <div *ngIf="isAuthorised(advert.authorId)" class="button-container float-right">
-                <i class="far fa-edit text-dark" id="update" (click)="redirectToUpdatePage(advert.advertId)" title="edit"></i>
-                <i class="far fa-trash-alt text-dark" id="delete" (click)="redirectToDeletePage(advert.advertId)" title="delete"></i>
-              </div>
-            </div>
+            <div class="card-container">
+              <div class="card-extensions">
+                <span *ngIf='advert.reservingId == null; else reserved' class="badge badge-success float-left">Available</span>
+                <ng-template #reserved>
+                  <span class="badge badge-danger">Reserved</span>
+                </ng-template>
 
-            <div class="card shadow mb-5 bg-white rounded" (click)="getAdvertDetails(advert.advertId)">
-              <div class="card-img-top">
-                <div class="thumbnail">
-                  <img src="{{advert.imageUrl}}" alt="Image" />
+                <div *ngIf="isAuthorised(advert.authorId)" class="button-container float-right">
+                  <i class="far fa-edit text-dark" id="update" (click)="redirectToUpdatePage(advert.advertId)" title="edit"></i>
+                  <i class="far fa-trash-alt text-dark" id="delete" (click)="redirectToDeletePage(advert.advertId)" title="delete"></i>
                 </div>
               </div>
-              <div class="card-body">
-                <h5 class="card-title">{{ advert.title }}</h5>
-                <p class="card-text">{{ advert.shortDescription }}</p>
+
+              <div class="card shadow mb-5 bg-white rounded" (click)="getAdvertDetails(advert.advertId)">
+                <div class="card-img-top">
+                  <div class="thumbnail">
+                    <img src="{{advert.imageUrl}}" alt="Image" />
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{ advert.title }}</h5>
+                  <p class="card-text">{{ advert.shortDescription }}</p>
+                </div>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
+
+
+
+
 
 <app-success-modal [modalHeaderText]="'Success message'"
-                    [modalBodyText]="'Action completed successfully'"
-                    [okButtonText]="'OK'"></app-success-modal>
+                   [modalBodyText]="'Action completed successfully'"
+                   [okButtonText]="'OK'"></app-success-modal>
 
 <app-error-modal [modalHeaderText]="errorTitle"
-                  [modalBodyText]="errorMessage"
-                  [okButtonText]="'OK'"></app-error-modal>
+                 [modalBodyText]="errorMessage"
+                 [okButtonText]="'OK'"></app-error-modal>
