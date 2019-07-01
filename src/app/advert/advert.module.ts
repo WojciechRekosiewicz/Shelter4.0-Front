@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module'
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthGuardService } from './../guards/auth-guard.service';
 
 import { AdvertListComponent } from './advert-list/advert-list.component';
@@ -18,6 +19,7 @@ import { AdvertDeleteComponent } from './advert-delete/advert-delete.component';
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
+    NgxSpinnerModule,
     RouterModule.forChild([
       { path: 'list', component: AdvertListComponent },
       { path: 'details/:id', component: AdvertDetailsComponent },

@@ -1,6 +1,6 @@
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
@@ -8,6 +8,7 @@ import { MenuComponent } from './menu/menu.component';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { InternalServerComponent } from './error-pages/internal-server/internal-server.component';
 import { ErrorComponent } from './error-pages/error/error.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { EnvironmentUrlService } from './shared/services/environment-url.service';
 import { RepositoryService } from './shared/services/repository.service';
@@ -37,7 +38,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
       { path: 'connection-error', component: ErrorComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', redirectTo: '/404', pathMatch: 'full' }
-    ])
+    ]),
+    NgxSpinnerModule
   ],
   providers: [
     EnvironmentUrlService,

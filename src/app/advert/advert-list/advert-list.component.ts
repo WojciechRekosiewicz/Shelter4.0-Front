@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { RepositoryService } from './../../shared/services/repository.service';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { AdvertShort } from './../../_interfaces/advert-short.model';
 
@@ -14,14 +15,14 @@ import { AdvertShort } from './../../_interfaces/advert-short.model';
 })
 export class AdvertListComponent implements OnInit {
   public adverts: AdvertShort[];
+  public loading: boolean = true;
   public errorMessage: string = '';
   public userId: string = '';
 
-  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router) { }
+  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.getAllAdverts();
-    this.updateUserId();
   }
 
   public getAllAdverts() {
@@ -29,6 +30,7 @@ export class AdvertListComponent implements OnInit {
     this.repository.getData(apiAddress)
       .subscribe(res => {
         this.adverts = res['result'] as AdvertShort[];
+        this.loading = false;
       },
         (error) => {
           this.errorHandler.handleError(error);

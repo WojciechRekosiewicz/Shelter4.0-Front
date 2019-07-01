@@ -48,6 +48,7 @@ export class ErrorHandlerService {
 
   private createErrorMessage(error: HttpErrorResponse) {
     let resultErrorMessage = "";
+    console.log(error);
     if (error.error) {
       try {
         resultErrorMessage = error.error.errors.join('\n');
