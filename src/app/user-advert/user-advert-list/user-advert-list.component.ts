@@ -3,24 +3,18 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { RepositoryService } from './../../shared/services/repository.service';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { AdvertShort } from './../../_interfaces/advert-short.model';
 
 @Component({
-  selector: 'app-advert-list',
-  templateUrl: './advert-list.component.html',
-  styleUrls: ['./advert-list.component.css']
+  selector: 'app-user-advert-list',
+  templateUrl: './user-advert-list.component.html',
+  styleUrls: ['./user-advert-list.component.css']
 })
+export class UserAdvertListComponent implements OnInit {
+  pageTitle = 'User Advert List';
 
-export class AdvertListComponent implements OnInit {
-  pageTitle = 'Advert List';
-  public adverts: AdvertShort[] = [];
-  public filteredAdverts: AdvertShort[] = [];
-  public loading: boolean = true;
   public errorMessage: string = '';
   public userId: string = '';
-
-  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router, private spinner: NgxSpinnerService, private route: ActivatedRoute) { }
 
   _listFilter = '';
   get listFilter(): string {
@@ -31,20 +25,42 @@ export class AdvertListComponent implements OnInit {
     this.filteredAdverts = this.listFilter ? this.performFilter(this.listFilter) : this.adverts;
   }
 
+  adverts: AdvertShort[] = [];
+  filteredAdverts: AdvertShort[] = [];
+
+  constructor(private repository: RepositoryService,
+    private errorHandler: ErrorHandlerService,
+    private router: Router,
+    private route: ActivatedRoute) { }
+
   ngOnInit() {
-    this.updateUserId();
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
 
+    this.updateUserId();
+
+
     let apiAddress: string = "api/adverts";
+    //this.repository.getData(apiAddress)
+    //  .subscribe(res => {
+    //    this.adverts = res as AdvertShort[];
+    //    this.filteredProducts = this.performFilter(this.listFilter);
+    //  },
+    //    (error) => {
+    //      this.errorHandler.handleError(error);
+    //      this.errorMessage = this.errorHandler.errorMessage;
+    //    })
 
     this.repository.getData(apiAddress).subscribe(
       (response: any) => {
-        this.adverts = response['result'] as AdvertShort[];
+        this.adverts = response['result'];
         this.filteredAdverts = this.performFilter(this.listFilter);
       },
       error => this.errorMessage = <any>error
     );
+
+  
   }
+
 
   performFilter(filterBy: string): AdvertShort[] {
     filterBy = filterBy.toLocaleLowerCase();

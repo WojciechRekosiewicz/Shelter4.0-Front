@@ -5,12 +5,12 @@ import { RepositoryService } from './../../shared/services/repository.service';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
 
 @Component({
-  selector: 'app-adver-details',
-  templateUrl: './advert-details.component.html',
-  styleUrls: ['./advert-details.component.css']
+  selector: 'app-user-advert-details',
+  templateUrl: './user-advert-details.component.html',
+  styleUrls: ['./user-advert-details.component.css']
 })
-export class AdvertDetailsComponent implements OnInit {
-  pageTitle = 'Advert Detail';
+export class UserAdvertDetailsComponent implements OnInit {
+  pageTitle = 'User Advert Detail';
   advert: Advert;
   public errorMessage: string = '';
 
@@ -56,30 +56,6 @@ export class AdvertDetailsComponent implements OnInit {
     }
   }
 
-
-  private getUserId() {
-    let jwtToken = localStorage.getItem('jwt');
-
-    if (jwtToken != null) {
-      let decodedJwtJsonData = window.atob(jwtToken.split('.')[1]);
-      let decodedJwtData = JSON.parse(decodedJwtJsonData);
-      return decodedJwtData.id;
-    }
-  }
-
-
-  public canReserve() {
-    let userId = this.getUserId();
-    if (userId == null) {
-      return false;
-    }
-    else {
-      return userId != this.advert.authorId;
-    }
-  }
-
-  reserveAdvert() {
-  }
 
   public returnBack() {
     let listUrl: string = '/advert/list'
