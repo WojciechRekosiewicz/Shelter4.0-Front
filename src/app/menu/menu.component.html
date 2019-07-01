@@ -12,7 +12,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/advert/create']" routerLinkActive="active"
+        <a *ngIf="isLoggedIn" class="nav-link" [routerLink]="['/advert/create']" routerLinkActive="active"
            [routerLinkActiveOptions]="{exact: true}">Create Advert</a>
       </li>
         <a *ngIf="isLoggedIn" class="nav-link" [routerLink]="['/user/userlist']" routerLinkActive="active"
