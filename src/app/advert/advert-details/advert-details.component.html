@@ -1,11 +1,14 @@
 <div class="well">
   <button type="button" id="details" class="btn btn-default"
-          (click)="returnBack()">
+          [routerLink]="['/advert/list']" queryParamsHandling="preserve">
+    <!-- (click)="returnBack()"-->
     Return
   </button>
   <div class="row">
+
+
     <div class="col-md-12">
-      <img src="{{ advert?.imageUrl }}" class="img-thumbnail" [alt]="advert?.title" />
+      <img src="{{ advert?.imageUrl }}" [alt]="advert?.title" />
     </div>
   </div>
   <div class="row">
@@ -43,3 +46,44 @@
     </div>
   </div>
 </div>
+
+<div class="m-1">
+  <button *ngIf="canReserve(advert?.authorId)" type="submit" class="btn btn-info" (click)="reserveAdvert()">Reserve</button>
+</div>
+
+
+<!--<div class="advert-container m-2">
+  <div class="advert-title-container container">
+    <div class="row m-2">
+      <div class="advert-title m-auto">
+        <h3>{{ advert?.title }}</h3>
+      </div>
+
+      <div class="advert-button-container ml-auto">
+        <div class="row">
+          <div class="m-1">
+            <button *ngIf="canReserve(advert?.authorId)"type="submit" class="btn btn-info" (click)="reserveAdvert()">Reserve</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="advert-body-container">
+    <div class="row">
+      <div class="m-auto">
+        <img src="{{ advert?.imageUrl }}" class="rounded img-thumbnail" [alt]="advert?.title" />
+      </div>
+      <div class="advert-description col-12">
+        <div class="p-3">
+          <h4><b>Short description:</b></h4>
+          <h5 class="p-3">{{ advert?.shortDescription }}</h5>
+        </div>
+        <div class="p-3">
+          <h4><b>Long description:</b></h4>
+          <h5 class="p-3">{{ advert?.longDescription }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->

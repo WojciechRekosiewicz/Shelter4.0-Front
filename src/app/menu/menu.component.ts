@@ -17,5 +17,6 @@ export class MenuComponent implements OnInit {
   logOut() {
     localStorage.removeItem("jwt");
     this.isLoggedIn = false;
+    window.location.reload();
   }
 }

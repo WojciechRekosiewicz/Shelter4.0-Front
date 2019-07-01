@@ -58,7 +58,8 @@ export class AccountLoginComponent implements OnInit {
     this.repository.login(apiUrl, user)
       .subscribe(response => {
         $('#successModal').modal();
-        this.handleLogin((<any>response).token);
+
+        this.handleLogin((<any>response).token, (<any>response).refreshToken);
       },
         (error => {
           this.errorHandler.handleError(error);
@@ -68,8 +69,9 @@ export class AccountLoginComponent implements OnInit {
       )
   }
 
-  private handleLogin(jwtToken) {
+  private handleLogin(jwtToken, refreshToken) {
     localStorage.setItem("jwt", jwtToken);
+    localStorage.setItem("refreshToken", refreshToken);
     this.invalidLogin = false;
   }
 

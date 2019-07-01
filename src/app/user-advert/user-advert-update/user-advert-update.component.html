@@ -61,12 +61,12 @@
     </div>
   </form>
 
-  <app-success-modal [modalHeaderText]="'Action succeed'"
-                     [modalBodyText]="successMessage"
+  <app-success-modal [modalHeaderText]="'Success message'"
+                     [modalBodyText]="'Action completed successfully'"
                      [okButtonText]="'OK'"
                      (redirectOnOK)="redirectToAdvertList()"></app-success-modal>
 
-  <app-error-modal [modalHeaderText]="'Action failed'"
+  <app-error-modal [modalHeaderText]="errorTitle"
                    [modalBodyText]="errorMessage"
                    [okButtonText]="'OK'"></app-error-modal>
 </div>

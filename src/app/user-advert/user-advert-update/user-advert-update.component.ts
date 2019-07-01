@@ -6,13 +6,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Advert } from './../../_interfaces/advert.model';
 
 @Component({
-  selector: 'app-advert-update',
-  templateUrl: './advert-update.component.html',
-  styleUrls: ['./advert-update.component.css']
+  selector: 'app-user-advert-update',
+  templateUrl: './user-advert-update.component.html',
+  styleUrls: ['./user-advert-update.component.css']
 })
-export class AdvertUpdateComponent implements OnInit {
+export class UserAdvertUpdateComponent implements OnInit {
   public errorMessage: string = '';
-  public successMessage: string = '';
   public advert: Advert;
   public advertForm: FormGroup;
 
@@ -22,16 +21,16 @@ export class AdvertUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.advertForm = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.maxLength(40), Validators.minLength(10)]),
+      title: new FormControl('', [Validators.required, Validators.maxLength(40), Validators.minLength(6)]),
       shortDescription: new FormControl('', [Validators.required, Validators.maxLength(70), Validators.minLength(10)]),
       longDescription: new FormControl('', [Validators.required, Validators.maxLength(450), Validators.minLength(30)]),
       imageUrl: new FormControl('', [Validators.required])
     });
 
-    this.getAdvertById();
+    this.getOwnerById();
   }
 
-  private getAdvertById() {
+  private getOwnerById() {
     let advertId: string = this.activeRoute.snapshot.params['id'];
 
     let advertByIdUrl: string = `api/adverts/${advertId}`;
@@ -61,7 +60,7 @@ export class AdvertUpdateComponent implements OnInit {
     return false;
   }
 
-  public redirectToAdvertList() {
+  public redirectToOwnerList() {
     this.router.navigate(['/advert/list']);
   }
 
@@ -81,7 +80,6 @@ export class AdvertUpdateComponent implements OnInit {
     let apiUrl = `api/adverts/${this.advert.advertId}`;
     this.repository.update(apiUrl, this.advert)
       .subscribe(res => {
-        this.successMessage = res['message'];
         $('#successModal').modal();
       },
         (error => {
@@ -89,5 +87,9 @@ export class AdvertUpdateComponent implements OnInit {
           this.errorMessage = this.errorHandler.errorMessage;
         })
       )
+  }
+
+  public redirectToAdvertList() {
+    this.router.navigate(['/advert/list']);
   }
 }

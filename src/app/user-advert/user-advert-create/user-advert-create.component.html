@@ -1,6 +1,7 @@
-<div class="container-fluid">
-  <form [formGroup]="advertForm" autocomplete="off" novalidate (ngSubmit)="updateAdvert(advertForm.value)">
+<!--<div class="container-fluid">
+  <form [formGroup]="advertForm" autocomplete="off" novalidate (ngSubmit)="createAdvert(advertForm.value)">
     <div class="form-horizontal well">
+
       <div class="form-group">
         <label for="title" class="control-label col-md-2">Title of the advert: </label>
         <div class="col-md-5">
@@ -49,9 +50,10 @@
       </div>
 
       <br><br>
+
       <div class="form-group">
         <div class="col-md-offset-5 col-md-1">
-          <button type="submit" class="btn btn-info" [disabled]="!advertForm.valid">Update</button>
+          <button type="submit" class="btn btn-info" [disabled]="!advertForm.valid">Save</button>
         </div>
         <div class="col-md-1">
           <button type="button" class="btn btn-danger" (click)="redirectToAdvertList()">Cancel</button>
@@ -61,12 +63,11 @@
     </div>
   </form>
 
-  <app-success-modal [modalHeaderText]="'Action succeed'"
-                     [modalBodyText]="successMessage"
-                     [okButtonText]="'OK'"
+  <app-success-modal [modalHeaderText]="'Advert created'"
+                     [modalBodyText]="'Action completed successfully'" [okButtonText]="'OK'"
                      (redirectOnOK)="redirectToAdvertList()"></app-success-modal>
 
-  <app-error-modal [modalHeaderText]="'Action failed'"
-                   [modalBodyText]="errorMessage"
-                   [okButtonText]="'OK'"></app-error-modal>
-</div>
+  <app-error-modal [modalHeaderText]="errorTitle"
+                   [modalBodyText]="errorMessage" [okButtonText]="'OK'"></app-error-modal>
+
+</div>-->
