@@ -51,8 +51,8 @@ export class UserAdvertListComponent implements OnInit {
     //    })
 
     this.repository.getData(apiAddress).subscribe(
-      (adverts: any) => {
-        this.adverts = adverts;
+      (response: any) => {
+        this.adverts = response['result'];
         this.filteredAdverts = this.performFilter(this.listFilter);
       },
       error => this.errorMessage = <any>error
