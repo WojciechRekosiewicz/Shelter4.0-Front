@@ -52,18 +52,6 @@ export class AdvertListComponent implements OnInit {
       advert.title.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
-  //public getAllOwners() {
-  //  let apiAddress: string = "api/adverts";
-  //  this.repository.getData(apiAddress)
-  //    .subscribe(res => {
-  //      this.adverts = res as AdvertShort[];
-  //    },
-  //      (error) => {
-  //        this.errorHandler.handleError(error);
-  //        this.errorMessage = this.errorHandler.errorMessage;
-  //      })
-  //}
-
   public getAdvertDetails(id) {
     let detailsUrl: string = `/advert/details/${id}`
     this.router.navigate([detailsUrl]);
