@@ -35,7 +35,7 @@ export class RepositoryService {
     return this.http.post(this.createCompleteRoute(route, this.envUrl.urlAddress), body, this.generateHeaders());
   }
 
-  public refresh(route: string, body) {
+  public refreshToken(route: string, body) {
     return this.http.post(this.createCompleteRoute(route, this.envUrl.urlAddress), body, this.generateHeaders());
   }
 
