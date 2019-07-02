@@ -37,13 +37,11 @@ export class AuthGuardService implements CanActivate {
       .subscribe(res => {
         localStorage.setItem('jwt', res['token']);
         localStorage.setItem('refreshToken', res['refreshToken']);
-        console.log("AuthGuard: successfully refreshed token.");
       },
         (error) => {
           this.errorHandler.handleError(error);
           window.location.reload();
           localStorage.clear();
-          console.log("AuthGuard: token has not been refreshed.");
         }
     )
   }
