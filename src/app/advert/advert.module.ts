@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FilterPipe } from './advert-list/filter.pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AdvertReserveComponent } from './advert-reserve/advert-reserve.component';
 
 
 
@@ -25,6 +26,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AdvertCreateComponent,
     AdvertUpdateComponent,
     AdvertDeleteComponent,
+    AdvertReserveComponent,
     FilterPipe
     ],
   imports: [
@@ -40,7 +42,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
       { path: 'details/:id', component: AdvertDetailsComponent },
       { path: 'create', component: AdvertCreateComponent, canActivate: [AuthGuardService] },
       { path: 'update/:id', component: AdvertUpdateComponent, canActivate: [AuthGuardService] },
-      { path: 'delete/:id', component: AdvertDeleteComponent, canActivate: [AuthGuardService] }
+      { path: 'delete/:id', component: AdvertDeleteComponent, canActivate: [AuthGuardService] },
+      { path: 'reserve/:id', component: AdvertReserveComponent, canActivate: [AuthGuardService] }
     ])
   ]
 })

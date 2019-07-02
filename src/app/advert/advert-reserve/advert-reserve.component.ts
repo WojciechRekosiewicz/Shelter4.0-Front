@@ -50,7 +50,7 @@ export class AdvertReserveComponent implements OnInit {
     this.advert = advert;
 
     if (this.advert) {
-      this.pageTitle = `Product Detail: ${this.advert.title}`;
+      this.pageTitle = `Advert Reserve: ${this.advert.title}`;
     } else {
       this.pageTitle = 'No product found';
     }
