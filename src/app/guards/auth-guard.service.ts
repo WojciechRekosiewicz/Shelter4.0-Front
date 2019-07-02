@@ -16,15 +16,35 @@ export class AuthGuardService implements CanActivate {
   canActivate() {
     var token = localStorage.getItem("jwt");
 
-    if (token && !this.jwtHelper.isTokenExpired(token)) {
-      return true;
+    if (token) {
+      if (!this.jwtHelper.isTokenExpired(token)) {
+        return true;
+      }
+      else {
+        this.refreshToken();
+      }
     }
-
-    localStorage.clear();
-    window.location.reload();
-    this.router.navigate(["/account/login"]);
-    return false;
   }
 
+  private refreshToken() {
+    let url = 'api/identity/refresh';
+    let refreshTokenModel: RefreshTokenModel = {
+      token: localStorage.getItem('jwt'),
+      refreshToken: localStorage.getItem('refreshToken')
+    };
 
+    this.repository.refreshToken(url, refreshTokenModel)
+      .subscribe(res => {
+        localStorage.setItem('jwt', res['token']);
+        localStorage.setItem('refreshToken', res['refreshToken']);
+        console.log("AuthGuard: successfully refreshed token.");
+      },
+        (error) => {
+          this.errorHandler.handleError(error);
+          window.location.reload();
+          localStorage.clear();
+          console.log("AuthGuard: token has not been refreshed.");
+        }
+    )
+  }
 }
