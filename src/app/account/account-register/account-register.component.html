@@ -1,77 +1,72 @@
-<div class="container-fluid">
-  <form [formGroup]="registerForm" autocomplete="off" novalidate (ngSubmit)="registerUser(registerForm.value)">
-    <div class="form-horizontal well">
+<div>
+  <div class="container-fluid">
+    <form [formGroup]="registerForm" autocomplete="off" novalidate (ngSubmit)="registerUser(registerForm.value)">
+      <div class="form-horizontal well">
 
-      <div class="form-group">
-        <label for="title" class="control-label col-md-2">Username: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="username" id="username" class="form-control" />
+        <div class="form-group">
+          <label for="title" class="control-label col-md-2">Username: </label>
+          <div class="col-md-5">
+            <input type="text" formControlName="username" id="username" class="form-control" />
+          </div>
+          <div class="col-md-5">
+            <em *ngIf="validateControl('username') && hasError('username', 'required')">Username is required</em>
+            <em *ngIf="validateControl('username') && hasError('username', 'maxlength')">Username is too long</em>
+            <em *ngIf="validateControl('username') && hasError('username', 'minlength')">Username is too short</em>
+          </div>
         </div>
-        <div class="col-md-5">
-          <em *ngIf="validateControl('username') && hasError('username', 'required')">Username is required</em>
-          <em *ngIf="validateControl('username') && hasError('username', 'maxlength')">Username is too long</em>
-          <em *ngIf="validateControl('username') && hasError('username', 'minlength')">Username is too short</em>
+
+        <div class="form-group">
+          <label for="email" class="control-label col-md-2">E-mail: </label>
+          <div class="col-md-5">
+            <input type="text" formControlName="email" id="email" class="form-control" />
+          </div>
+          <div class="col-md-5">
+            <p *ngIf="validateControl('email') && hasError('email', 'required')">Email is required</p>
+            <p *ngIf="validateControl('email') && hasError('email', 'minlength')">Email is too short</p>
+            <p *ngIf="validateControl('email') && hasError('email', 'maxlength')">Email is too long</p>
+            <p *ngIf="validateControl('email') && hasError('email', 'email')">Invalid e-mail format</p>
+          </div>
         </div>
+
+        <div class="form-group">
+          <label for="password" class="control-label col-md-2">Password: </label>
+          <div class="col-md-5">
+            <input type="password" formControlName="password" id="password" class="form-control" />
+          </div>
+          <div class="col-md-5">
+            <p *ngIf="validateControl('password') && hasError('password', 'required')">Password is required</p>
+            <p *ngIf="validateControl('password') && hasError('password', 'maxlength')">Password is too long.</p>
+            <p *ngIf="validateControl('password') && hasError('password', 'minlength')">Password is too short.</p>
+            <p *ngIf="validatePassword('password')">Password does not match password confirmation.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="passwordRepeat" class="control-label col-md-2">Password: </label>
+          <div class="col-md-5">
+            <input type="password" formControlName="passwordRepeat" id="passwordRepeat" class="form-control" />
+          </div>
+          <div class="col-md-5">
+            <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'required')">Password is required</p>
+            <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'maxlength')">Password is too long.</p>
+            <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'minlength')">Password is too short.</p>
+            <p *ngIf="validatePassword('passwordRepeat')">Password does not match password confirmation.</p>
+          </div>
+        </div>
+
+        <br><br>
+
+        <div class="form-group">
+          <div class="col-md-offset-5 col-md-1">
+            <button type="submit" class="btn btn-info" [disabled]="!registerForm.valid">Save</button>
+          </div>
+          <div class="col-md-1">
+            <button type="button" class="btn btn-danger" (click)="redirectToAdvertList()">Cancel</button>
+          </div>
+        </div>
+
       </div>
+    </form>
 
-      <div class="form-group">
-        <label for="email" class="control-label col-md-2">E-mail: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="email" id="email" class="form-control" />
-        </div>
-        <div class="col-md-5">
-          <p *ngIf="validateControl('email') && hasError('email', 'required')">Email is required</p>
-          <p *ngIf="validateControl('email') && hasError('email', 'minlength')">Email is too short</p>
-          <p *ngIf="validateControl('email') && hasError('email', 'maxlength')">Email is too long</p>
-          <p *ngIf="validateControl('email') && hasError('email', 'email')">Invalid e-mail format</p>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="password" class="control-label col-md-2">Password: </label>
-        <div class="col-md-5">
-          <input type="password" formControlName="password" id="password" class="form-control" />
-        </div>
-        <div class="col-md-5">
-          <p *ngIf="validateControl('password') && hasError('password', 'required')">Password is required</p>
-          <p *ngIf="validateControl('password') && hasError('password', 'maxlength')">Password is too long.</p>
-          <p *ngIf="validateControl('password') && hasError('password', 'minlength')">Password is too short.</p>
-          <p *ngIf="validatePassword('password')">Password does not match password confirmation.</p>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="passwordRepeat" class="control-label col-md-2">Password: </label>
-        <div class="col-md-5">
-          <input type="password" formControlName="passwordRepeat" id="passwordRepeat" class="form-control" />
-        </div>
-        <div class="col-md-5">
-          <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'required')">Password is required</p>
-          <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'maxlength')">Password is too long.</p>
-          <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'minlength')">Password is too short.</p>
-          <p *ngIf="validatePassword('passwordRepeat')">Password does not match password confirmation.</p>
-        </div>
-      </div>
-
-      <br><br>
-
-      <div class="form-group">
-        <div class="col-md-offset-5 col-md-1">
-          <button type="submit" class="btn btn-info" [disabled]="!registerForm.valid">Save</button>
-        </div>
-        <div class="col-md-1">
-          <button type="button" class="btn btn-danger" (click)="redirectToAdvertList()">Cancel</button>
-        </div>
-      </div>
-
-    </div>
-  </form>
-
-  <app-success-modal [modalHeaderText]="'User registered'"
-                     [modalBodyText]="'Action completed successfully'" [okButtonText]="'OK'"
-                     (redirectOnOK)="redirectToAdvertList()"></app-success-modal>
-
-  <app-error-modal [modalHeaderText]="errorTitle"
-                   [modalBodyText]="errorMessage" [okButtonText]="'OK'"></app-error-modal>
-
+  </div>
 </div>
