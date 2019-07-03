@@ -35,14 +35,16 @@ export class AdvertListComponent implements OnInit {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
 
     let apiAddress: string = "api/adverts";
-
-    this.repository.getData(apiAddress).subscribe(
-      (response: any) => {
+    this.repository.getData(apiAddress)
+      .subscribe(
+        (response: any) => {
         this.adverts = response['result'] as AdvertShort[];
-        this.filteredAdverts = this.performFilter(this.listFilter);
-      },
-      error => this.errorMessage = <any>error
-    );
+          this.filteredAdverts = this.performFilter(this.listFilter);
+        },
+        error => {
+          this.errorMessage = <any>error
+        }
+      );
   }
 
   performFilter(filterBy: string): AdvertShort[] {
@@ -77,7 +79,7 @@ export class AdvertListComponent implements OnInit {
     }
   }
 
-  public isAuthorised(authorId) {
-    return authorId == this.userId;
+  public isAuthorized(authorId) {
+    return authorId === this.userId;
   }
 }
