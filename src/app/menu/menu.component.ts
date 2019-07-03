@@ -13,12 +13,22 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.isLoggedIn = localStorage.getItem("jwt") != null;
-    this.updateUserId();
+    this.updateUserData();
   }
 
   logOut() {
     localStorage.removeItem("jwt");
     this.isLoggedIn = false;
     window.location.reload();
+  }
+
+  public updateUserData() {
+    let jwtToken = localStorage.getItem('jwt');
+
+    if (jwtToken != null) {
+      let decodedJwtJsonData = window.atob(jwtToken.split('.')[1]);
+      let decodedJwtData = JSON.parse(decodedJwtJsonData);
+      this.userName = decodedJwtData.sub;
+    }
   }
 }
