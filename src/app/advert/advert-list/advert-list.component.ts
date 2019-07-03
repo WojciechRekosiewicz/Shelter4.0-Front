@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { RepositoryService } from './../../shared/services/repository.service';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { AdvertShort } from './../../_interfaces/advert-short.model';
 
 @Component({
@@ -13,14 +12,14 @@ import { AdvertShort } from './../../_interfaces/advert-short.model';
 })
 
 export class AdvertListComponent implements OnInit {
-  pageTitle = 'Advert List';
+  private pageTitle = 'Advert List';
   public adverts: AdvertShort[] = [];
   public filteredAdverts: AdvertShort[] = [];
   public loading: boolean = true;
   public errorMessage: string = '';
   public userId: string = '';
 
-  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router, private spinner: NgxSpinnerService, private route: ActivatedRoute) { }
+  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router, private route: ActivatedRoute) { }
 
   _listFilter = '';
   get listFilter(): string {
