@@ -21,12 +21,13 @@ export class AuthGuardService implements CanActivate {
         return true;
       }
       else {
-        this.refreshToken();
+        return this.refreshToken();
       }
     }
+    return false;
   }
 
-  private refreshToken() {
+  private refreshToken(): boolean {
     let url = 'api/identity/refresh';
     let refreshTokenModel: RefreshTokenModel = {
       token: localStorage.getItem('jwt'),
@@ -37,12 +38,15 @@ export class AuthGuardService implements CanActivate {
       .subscribe(res => {
         localStorage.setItem('jwt', res['token']);
         localStorage.setItem('refreshToken', res['refreshToken']);
+        return true;
       },
         (error) => {
           this.errorHandler.handleError(error);
           window.location.reload();
           localStorage.clear();
+          return false;
         }
     )
+    return false;
   }
 }
