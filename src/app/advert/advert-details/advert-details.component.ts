@@ -20,23 +20,7 @@ export class AdvertDetailsComponent implements OnInit {
   ngOnInit() {
     const id = +this.activeRoute.snapshot.paramMap.get('id');
     this.getAdvert(id);
-   // this.getAdvertDetails(id);
   }
-
-  //getAdvertDetails(id: number) {
-  // // let id: string = this.activeRoute.snapshot.params['id'];
-  //  let apiUrl: string = `api/adverts/${id}`;
-
-  //  this.repository.getData(apiUrl)
-  //    .subscribe(res => {
-  //      this.advert = res as Advert;
-  //    },
-  //      (error) => {
-  //        this.errorHandler.handleError(error);
-  //        this.errorMessage = this.errorHandler.errorMessage;
-  //      })
-  //}
-
 
   getAdvert(id: number) {
 
