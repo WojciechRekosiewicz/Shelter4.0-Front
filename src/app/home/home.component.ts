@@ -14,6 +14,4 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.homeText = "WELCOME TO E-SHELTER";
   }
-
-
 }
