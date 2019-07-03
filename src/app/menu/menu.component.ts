@@ -7,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   private isLoggedIn: boolean = false;
+  private userName: string = '';
 
   constructor() { }
 
   ngOnInit() {
     this.isLoggedIn = localStorage.getItem("jwt") != null;
+    this.updateUserId();
   }
 
   logOut() {
