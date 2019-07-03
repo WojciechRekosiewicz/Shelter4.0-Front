@@ -11,6 +11,7 @@ import { Advert } from './../../_interfaces/advert.model';
   styleUrls: ['./advert-update.component.css']
 })
 export class AdvertUpdateComponent implements OnInit {
+  public pageTitle: string = 'Update advert';
   public errorMessage: string = '';
   public successMessage: string = '';
   public advert: Advert;
@@ -21,11 +22,13 @@ export class AdvertUpdateComponent implements OnInit {
     private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    const urlReg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+
     this.advertForm = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(40), Validators.minLength(10)]),
       shortDescription: new FormControl('', [Validators.required, Validators.maxLength(70), Validators.minLength(10)]),
       longDescription: new FormControl('', [Validators.required, Validators.maxLength(450), Validators.minLength(30)]),
-      imageUrl: new FormControl('', [Validators.required])
+      imageUrl: new FormControl('', [Validators.required, Validators.pattern(urlReg)])
     });
 
     this.getAdvertById();
