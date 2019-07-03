@@ -11,17 +11,20 @@ import { AdvertCreateModel } from './../../_interfaces/advert-create.model';
   styleUrls: ['./advert-create.component.css']
 })
 export class AdvertCreateComponent implements OnInit {
+  public pageTitle: string = 'Create advert';
   public errorMessage: string = '';
   public advertForm: FormGroup;
 
   constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
+    const urlReg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+
     this.advertForm = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.maxLength(40), Validators.minLength(10)]),
       shortDescription: new FormControl('', [Validators.required, Validators.maxLength(70), Validators.minLength(10)]),
       longDescription: new FormControl('', [Validators.required, Validators.maxLength(450), Validators.minLength(30)]),
-      imageUrl: new FormControl('', [Validators.required])
+      imageUrl: new FormControl('', [Validators.required, Validators.pattern(urlReg)])
     });
   }
 
