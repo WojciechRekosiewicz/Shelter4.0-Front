@@ -1,5 +1,6 @@
 .navbar {
   border-radius: 5px;
+  margin-bottom: 1rem;
 }
 
 .navbar-logo img {
@@ -9,7 +10,7 @@
 
 .nav-item {
   margin: 0px 2px;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .nav-item:hover {
