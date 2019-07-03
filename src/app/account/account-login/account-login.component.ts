@@ -19,9 +19,6 @@ export class AccountLoginComponent implements OnInit {
   constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
-    let token = localStorage.getItem("jwt");
-    if (token != null) this.router.navigate(['/advert/list']);
-
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(50), Validators.minLength(6)]),
       password: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(7)])
@@ -75,13 +72,7 @@ export class AccountLoginComponent implements OnInit {
     this.invalidLogin = false;
   }
 
-
-  public redirectToAdvertList() {
-    this.router.navigate(['/advert/list']);
-  }
-
   public redirectWithPageReload() {
-    this.redirectToAdvertList();
     window.location.reload();
   }
 }
