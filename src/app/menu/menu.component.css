@@ -8,6 +8,7 @@
 }
 
 .nav-item {
+  margin: 0px 2px;
   transition: 0.5s;
 }
 
@@ -15,6 +16,6 @@
   background-color: rgb(128, 128, 128);
 }
 
-.nav-item:active {
-  border: 1px solid white;
+.nav-username {
+  cursor: default;
 }
