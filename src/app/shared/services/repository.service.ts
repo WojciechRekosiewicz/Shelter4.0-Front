@@ -20,7 +20,7 @@ export class RepositoryService {
   }
 
   public delete(route: string) {
-    return this.http.delete(this.createCompleteRoute(route, this.envUrl.urlAddress));
+    return this.http.delete(this.createCompleteRoute(route, this.envUrl.urlAddress), this.generateHeaders());
   }
 
   private createCompleteRoute(route: string, envAddress: string) {
