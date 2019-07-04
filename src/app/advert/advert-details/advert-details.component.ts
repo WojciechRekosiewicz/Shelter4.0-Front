@@ -69,16 +69,19 @@ export class AdvertDetailsComponent implements OnInit {
 
 
   public canReserve() {
+    
     let userId = this.getUserId();
     if (userId == null) {
       return false;
     }
     else {
+      
       return userId != this.advert.authorId;
     }
   }
 
   reserveAdvert() {
+    
   }
 
   public returnBack() {

@@ -38,6 +38,12 @@ export class AdvertReserveComponent implements OnInit {
   //}
 
 
+  getMail(id) {
+    let apiUrl: string = `api/users/${id}`;
+
+  }
+
+
   getAdvert(id: number) {
 
     let apiUrl: string = `api/adverts/${id}`;
