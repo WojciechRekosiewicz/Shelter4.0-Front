@@ -76,4 +76,8 @@ export class AccountLoginComponent implements OnInit {
   public redirectWithPageReload() {
     window.location.reload();
   }
+
+  public redirectToAdvertListPage() {
+    this.router.navigate(['/advert/list']);
+  }
 }
