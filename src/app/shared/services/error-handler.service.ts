@@ -62,7 +62,6 @@ export class ErrorHandlerService {
     else {
       resultErrorMessage = error.status.toString();
     }
-
     this.errorMessage = resultErrorMessage;
   }
 }

@@ -1,7 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="container">
-  <app-menu></app-menu>
-  <div class="container-fluid text-center">
-    <router-outlet></router-outlet>
+  <div class="container">
+    <app-menu></app-menu>
+    <div class="container-fluid text-center">
+      <router-outlet></router-outlet>
+    </div>
+    <app-error-modal [modalHeaderText]="errorTitle"
+                     [modalBodyText]="errorMessage" [okButtonText]="'OK'"
+                     (redirectOnOK)="redirectToAdvertList()"></app-error-modal>
+    <app-success-modal [modalHeaderText]="'User registered'"
+                       [modalBodyText]="'Action completed successfully'" [okButtonText]="'OK'"
+                       (redirectOnOK)="redirectToAdvertList()"></app-success-modal>
   </div>
-</div>

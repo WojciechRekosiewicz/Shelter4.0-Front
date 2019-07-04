@@ -43,11 +43,3 @@
     </form>
   </div>
 </div>
-
-
-<app-success-modal [modalHeaderText]="'User logged in'"
-                   [modalBodyText]="'Action completed successfully'" [okButtonText]="'OK'"
-                   (redirectOnOK)="redirectWithPageReload()"></app-success-modal>
-
-<app-error-modal [modalHeaderText]="errorTitle"
-                 [modalBodyText]="errorMessage" [okButtonText]="'OK'"></app-error-modal>
