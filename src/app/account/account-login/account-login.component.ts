@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./account-login.component.css']
 })
 export class AccountLoginComponent implements OnInit {
+  public pageTitle: string = "Login";
   public errorMessage: string = '';
   public invalidLogin: boolean;
   public loginForm: FormGroup;
