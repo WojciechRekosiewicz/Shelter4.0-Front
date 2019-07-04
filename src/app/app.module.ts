@@ -7,6 +7,7 @@ import { MenuComponent } from './menu/menu.component';
 import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { InternalServerComponent } from './error-pages/internal-server/internal-server.component';
 import { ErrorComponent } from './error-pages/error/error.component';
+import { SharedModule } from './shared/shared.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
