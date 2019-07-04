@@ -37,7 +37,7 @@
       </li>
 
       <li *ngIf="isLoggedIn" class="nav-item">
-        <a class="nav-link" (click)="logOut()" [routerLink]="['/advert/list']" routerLinkActive="active"
+        <a class="nav-link" (click)="logOut()" routerLinkActive="active"
            [routerLinkActiveOptions]="{exact: true}"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </li>
     </ul>
