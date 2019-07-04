@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EnvironmentUrlService } from './environment-url.service';
+import { RefreshTokenModel } from '../../_interfaces/refreshToken.model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class RepositoryService {
@@ -35,8 +37,8 @@ export class RepositoryService {
     return this.http.post(this.createCompleteRoute(route, this.envUrl.urlAddress), body, this.generateHeaders());
   }
 
-  public refreshToken(route: string, body) {
-    return this.http.post(this.createCompleteRoute(route, this.envUrl.urlAddress), body, this.generateHeaders());
+  public refreshToken(route: string, body): Observable<RefreshTokenModel> {
+    return this.http.post<RefreshTokenModel>(this.createCompleteRoute(route, this.envUrl.urlAddress), body, this.generateHeaders());
   }
 
   private generateHeaders() {

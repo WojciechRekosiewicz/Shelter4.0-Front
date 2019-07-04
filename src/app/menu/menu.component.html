@@ -23,8 +23,9 @@
     </ul>
 
     <ul class="navbar-nav">
-      <li *ngIf="isLoggedIn">
-        <em class="nav-link nav-username">logged <i class="fas fa-at"></i> {{ userName }}</em>
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a class="nav-link" [routerLink]="['/account/register']" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">logged<i class="fas fa-at"></i>{{ userName }}</a>
       </li>
       <li *ngIf="!isLoggedIn" class="nav-item">
         <a class="nav-link" [routerLink]="['/account/register']" routerLinkActive="active"
@@ -38,7 +39,7 @@
 
       <li *ngIf="isLoggedIn" class="nav-item">
         <a class="nav-link" (click)="logOut()" routerLinkActive="active"
-           [routerLinkActiveOptions]="{exact: true}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+           [routerLinkActiveOptions]="{exact: true}"><i class="fas fa-sign-out-alt"></i>Logout</a>
       </li>
     </ul>
    </div>

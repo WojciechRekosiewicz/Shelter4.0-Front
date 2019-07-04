@@ -28,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     InternalServerComponent,
     ErrorComponent,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -40,12 +40,13 @@ import { FormsModule } from '@angular/forms';
       { path: '404', component: NotFoundComponent },
       { path: '500', component: InternalServerComponent },
       { path: 'connection-error', component: ErrorComponent },
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: '**', redirectTo: '/404', pathMatch: 'full' }
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '**', redirectTo: '404', pathMatch: 'full' }
     ]),
     NgxSpinnerModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [
     EnvironmentUrlService,

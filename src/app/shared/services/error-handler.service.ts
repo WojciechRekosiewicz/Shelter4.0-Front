@@ -43,18 +43,18 @@ export class ErrorHandlerService {
 
   private handleOtherError(error: HttpErrorResponse) {
     this.createErrorMessage(error);
+    $('#modal-body-text').text(this.errorMessage);
     $('#errorModal').modal();
   }
 
   private createErrorMessage(error: HttpErrorResponse) {
     let resultErrorMessage = "";
-    console.log(error);
+
     if (error.error) {
       try {
         resultErrorMessage = error.error.errors.join('\n');
       }
       catch (err) {
-
         let errorDict = error.error.errors;
         Object.keys(errorDict).forEach(k => resultErrorMessage += errorDict[k] + "\n");
         }

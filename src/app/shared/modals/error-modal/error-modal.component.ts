@@ -14,6 +14,9 @@ export class ErrorModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('#errorModal').on('hidden.bs.modal', function () {
+      window.location.reload();
+    });
   }
 
 }
