@@ -1,14 +1,19 @@
-<div>
+<div class="form-container col-5 m-auto">
+  <div class="form-title">
+    <h3 class="text-muted">{{ pageTitle }}</h3>
+  </div>
+
   <div class="container-fluid">
     <form [formGroup]="registerForm" autocomplete="off" novalidate (ngSubmit)="registerUser(registerForm.value)">
       <div class="form-horizontal well">
-
         <div class="form-group">
-          <label for="title" class="control-label col-md-2">Username: </label>
-          <div class="col-md-5">
-            <input type="text" formControlName="username" id="username" class="form-control" />
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="text" formControlName="email" id="email" class="form-control" placeholder="Enter user name" />
           </div>
-          <div class="col-md-5">
+          <div class="error-description">
             <em *ngIf="validateControl('username') && hasError('username', 'required')">Username is required</em>
             <em *ngIf="validateControl('username') && hasError('username', 'maxlength')">Username is too long</em>
             <em *ngIf="validateControl('username') && hasError('username', 'minlength')">Username is too short</em>
@@ -16,11 +21,13 @@
         </div>
 
         <div class="form-group">
-          <label for="email" class="control-label col-md-2">E-mail: </label>
-          <div class="col-md-5">
-            <input type="text" formControlName="email" id="email" class="form-control" />
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
+            </div>
+            <input type="text" formControlName="email" id="email" class="form-control" placeholder="Enter e-mail address" />
           </div>
-          <div class="col-md-5">
+          <div class="error-description">
             <p *ngIf="validateControl('email') && hasError('email', 'required')">Email is required</p>
             <p *ngIf="validateControl('email') && hasError('email', 'minlength')">Email is too short</p>
             <p *ngIf="validateControl('email') && hasError('email', 'maxlength')">Email is too long</p>
@@ -29,11 +36,13 @@
         </div>
 
         <div class="form-group">
-          <label for="password" class="control-label col-md-2">Password: </label>
-          <div class="col-md-5">
-            <input type="password" formControlName="password" id="password" class="form-control" />
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+            </div>
+            <input type="password" formControlName="password" id="password" class="form-control" placeholder="Enter password"/>
           </div>
-          <div class="col-md-5">
+          <div class="error-description">
             <p *ngIf="validateControl('password') && hasError('password', 'required')">Password is required</p>
             <p *ngIf="validateControl('password') && hasError('password', 'maxlength')">Password is too long.</p>
             <p *ngIf="validateControl('password') && hasError('password', 'minlength')">Password is too short.</p>
@@ -42,31 +51,33 @@
         </div>
 
         <div class="form-group">
-          <label for="passwordRepeat" class="control-label col-md-2">Password: </label>
-          <div class="col-md-5">
-            <input type="password" formControlName="passwordRepeat" id="passwordRepeat" class="form-control" />
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+            </div>
+            <input type="password" formControlName="passwordRepeat" id="passwordRepeat" class="form-control" placeholder="Enter password confirmation"/>
           </div>
-          <div class="col-md-5">
-            <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'required')">Password is required</p>
-            <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'maxlength')">Password is too long.</p>
-            <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'minlength')">Password is too short.</p>
-            <p *ngIf="validatePassword('passwordRepeat')">Password does not match password confirmation.</p>
-          </div>
-        </div>
-
-        <br><br>
-
-        <div class="form-group">
-          <div class="col-md-offset-5 col-md-1">
-            <button type="submit" class="btn btn-info" [disabled]="!registerForm.valid">Save</button>
-          </div>
-          <div class="col-md-1">
-            <button type="button" class="btn btn-danger" (click)="redirectToAdvertList()">Cancel</button>
+          <div class="error-description">
+            <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'required')">Password confirmation is required</p>
+            <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'maxlength')">Password confirmation is too long.</p>
+            <p *ngIf="validateControl('passwordRepeat') && hasError('passwordRepeat', 'minlength')">Password confirmation is too short.</p>
+            <p *ngIf="validatePassword('passwordRepeat')">Password confirmation does not match password.</p>
           </div>
         </div>
 
+        <div class="form-button-container m-auto">
+          <button type="submit" class="btn btn-info m-2" [disabled]="!loginForm.valid">Login</button>
+          <button type="button" class="btn btn-danger m-2" (click)="redirectToAdvertListPage()">Cancel</button>
+        </div>
       </div>
     </form>
-
   </div>
 </div>
+
+
+<app-success-modal [modalHeaderText]="'User logged in'"
+                   [modalBodyText]="'Action completed successfully'" [okButtonText]="'OK'"
+                   (redirectOnOK)="redirectWithPageReload()"></app-success-modal>
+
+<app-error-modal [modalHeaderText]="errorTitle"
+                 [modalBodyText]="errorMessage" [okButtonText]="'OK'"></app-error-modal>
