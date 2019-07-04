@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
+import { ErrorModalComponent } from './shared/modals/error-modal/error-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +12,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class AppComponent implements OnInit {
   title = 'Shelter Web Application';
 
-  constructor(private spinner: NgxSpinnerService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    /** spinner starts on init */
-    this.spinner.show();
+  }
 
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 5000);
+  public redirectToAdvertList() {
+    this.router.navigate(['/advert/list']);
+    window.location.reload();
   }
 }
