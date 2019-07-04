@@ -11,6 +11,7 @@ import { ErrorHandlerService } from './../../shared/services/error-handler.servi
 })
 export class AdvertDetailsComponent implements OnInit {
   pageTitle = 'Advert Detail';
+  public successMessage: string = '';
   advert: Advert;
   public errorMessage: string = '';
 
@@ -82,7 +83,28 @@ export class AdvertDetailsComponent implements OnInit {
   }
 
   reserveAdvert() {
-    
+    //this.advert.title = advertFormValue.title;
+    //this.advert.imageUrl = advertFormValue.imageUrl;
+    //this.advert.shortDescription = advertFormValue.shortDescription;
+    //this.advert.longDescription = advertFormValue.longDescription;
+    console.log("getUserId " + this.getUserId());
+    console.log("this.advert.reservingId " + this.advert.reservingId);
+    this.advert.reservingId = this.getUserId();
+
+    let apiUrl = `api/adverts/reserve/${this.advert.advertId}`;
+    this.repository.update(apiUrl, this.advert)
+      .subscribe(res => {
+        this.successMessage = res['message'];
+      },
+        (error => {
+          this.errorHandler.handleError(error);
+          this.errorMessage = this.errorHandler.errorMessage;
+        })
+      )
+ 
+   // this.advert.reservingId = this.getUserId();
+    console.log("getUserId " + this.getUserId());
+    console.log("this.advert.reservingId " + this.advert.reservingId);
   }
 
   public returnBack() {
