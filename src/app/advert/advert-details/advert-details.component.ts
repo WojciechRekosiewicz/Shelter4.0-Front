@@ -67,12 +67,6 @@ export class AdvertDetailsComponent implements OnInit {
   }
 
   reserveAdvert() {
-    //this.advert.title = advertFormValue.title;
-    //this.advert.imageUrl = advertFormValue.imageUrl;
-    //this.advert.shortDescription = advertFormValue.shortDescription;
-    //this.advert.longDescription = advertFormValue.longDescription;
-    console.log("getUserId " + this.getUserId());
-    console.log("this.advert.reservingId " + this.advert.reservingId);
     this.advert.reservingId = this.getUserId();
 
     let apiUrl = `api/adverts/${this.advert.advertId}/reserve`;
@@ -87,8 +81,6 @@ export class AdvertDetailsComponent implements OnInit {
       )
  
    // this.advert.reservingId = this.getUserId();
-    console.log("getUserId " + this.getUserId());
-    console.log("this.advert.reservingId " + this.advert.reservingId);
   }
 
   public returnBack() {
