@@ -1,68 +1,22 @@
-<div class="well">
-  <button type="button" id="details" class="btn btn-default"
-          [routerLink]="['/advert/list']" queryParamsHandling="preserve">
-    <!-- (click)="returnBack()"-->
-    Return
-  </button>
-  <div class="row">
-
-
-    <div class="col-md-12">
-      <img src="{{ advert?.imageUrl }}" [alt]="advert?.title" />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <strong>Advert Title:</strong>
-    </div>
-    <div class="col-md-3">
-      {{advert?.title}}
-    </div>
-  </div>
-
-  <!-- Example of ng-template usage -->
-  <div class="row" *ngIf='advert?.reservingId == null; else reserved'>
-    <span class="label label-success badge-pill">Available</span>
-  </div>
-  <ng-template #reserved>
-    <span class="label label-danger badge-pill">Reserved</span>
-  </ng-template>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>Short Description:</strong>
-    </div>
-    <div class="col-md-3">
-      {{advert?.shortDescription}}
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>Long Description:</strong>
-    </div>
-    <div class="col-md-3">
-      {{advert?.longDescription}}
-    </div>
-  </div>
-</div>
-
-<div class="m-1">
-  <button *ngIf="canReserve(advert?.authorId)" type="submit" class="btn btn-info" (click)="reserveAdvert()">Reserve</button>
-</div>
-
-
-<!--<div class="advert-container m-2">
+<div class="advert-container m-2">
   <div class="advert-title-container container">
     <div class="row m-2">
-      <div class="advert-title m-auto">
+      <div class="advert-title mr-auto">
         <h3>{{ advert?.title }}</h3>
+      </div>
+
+      <div>
+        <span *ngIf='advert.reservingId == null; else reserved' class="badge badge-success float-left">Available</span>
       </div>
 
       <div class="advert-button-container ml-auto">
         <div class="row">
           <div class="m-1">
-            <button *ngIf="canReserve(advert?.authorId)"type="submit" class="btn btn-info" (click)="reserveAdvert()">Reserve</button>
+            <button *ngIf="canReserve(advert?.authorId)" type="submit" class="btn btn-info" (click)="reserveAdvert()">Reserve</button>
+          </div>
+          <div class="m-1">
+            <button type="button" id="returnBtn" class="btn btn-danger"
+                    [routerLink]="['/advert/list']" queryParamsHandling="preserve">Return</button>
           </div>
         </div>
       </div>
@@ -71,10 +25,10 @@
 
   <div class="advert-body-container">
     <div class="row">
-      <div class="m-auto">
+      <div class="col-6">
         <img src="{{ advert?.imageUrl }}" class="rounded img-thumbnail" [alt]="advert?.title" />
       </div>
-      <div class="advert-description col-12">
+      <div class="advert-description col-6">
         <div class="p-3">
           <h4><b>Short description:</b></h4>
           <h5 class="p-3">{{ advert?.shortDescription }}</h5>
@@ -86,4 +40,8 @@
       </div>
     </div>
   </div>
-</div>-->
+</div>
+
+<ng-template #reserved>
+  <span class="badge badge-danger">Reserved</span>
+</ng-template>

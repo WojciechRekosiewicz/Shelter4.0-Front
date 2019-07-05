@@ -4,6 +4,7 @@ import { CanActivate, Router } from '@angular/router';
 import { RepositoryService } from 'src/app/shared/services/repository.service';
 import { ErrorHandlerService } from 'src/app/shared/services/error-handler.service';
 import { RefreshTokenModel } from 'src/app/_interfaces/refreshToken.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,38 +14,38 @@ export class AuthGuardService implements CanActivate {
   constructor(private jwtHelper: JwtHelperService, private router: Router, private repository: RepositoryService, private errorHandler: ErrorHandlerService) {
   }
 
-  canActivate() {
+  canActivate()  {
     var token = localStorage.getItem("jwt");
 
     if (token) {
       if (!this.jwtHelper.isTokenExpired(token)) {
         return true;
       }
-      else {
-        this.refreshToken();
-      }
+      return this.refreshToken();
     }
+    return false;
   }
 
-  private refreshToken() {
+  private async refreshToken() {
     let url = 'api/identity/refresh';
+    let result: boolean = false;
     let refreshTokenModel: RefreshTokenModel = {
       token: localStorage.getItem('jwt'),
       refreshToken: localStorage.getItem('refreshToken')
     };
 
-    this.repository.refreshToken(url, refreshTokenModel)
-      .subscribe(res => {
-        localStorage.setItem('jwt', res['token']);
-        localStorage.setItem('refreshToken', res['refreshToken']);
-        console.log("AuthGuard: successfully refreshed token.");
-      },
-        (error) => {
-          this.errorHandler.handleError(error);
-          window.location.reload();
-          localStorage.clear();
-          console.log("AuthGuard: token has not been refreshed.");
-        }
-    )
+    let data = await this.repository.refreshToken(url, refreshTokenModel).toPromise()
+      .catch((error) => {
+        this.errorHandler.handleError(error);
+        localStorage.clear();
+      });
+
+    if (data != undefined) {
+      localStorage.setItem('jwt', data['token']);
+      localStorage.setItem('refreshToken', data['refreshToken']);
+      result = true;
+    }
+
+    return result;
   }
 }

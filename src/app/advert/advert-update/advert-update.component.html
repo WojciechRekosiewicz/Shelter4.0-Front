@@ -1,72 +1,74 @@
-<div class="container-fluid">
-  <form [formGroup]="advertForm" autocomplete="off" novalidate (ngSubmit)="updateAdvert(advertForm.value)">
-    <div class="form-horizontal well">
-      <div class="form-group">
-        <label for="title" class="control-label col-md-2">Title of the advert: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="title" id="title" class="form-control" />
-        </div>
-        <div class="col-md-5">
-          <em *ngIf="validateControl('title') && hasError('title', 'required')">Title is required</em>
-          <em *ngIf="validateControl('title') && hasError('title', 'maxlength')">Maximum allowed length is 40 characters.</em>
-          <em *ngIf="validateControl('title') && hasError('title', 'minlength')">Minimum allowed length is 6 characters.</em>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="shortDescription" class="control-label col-md-2">Short description: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="shortDescription" id="shortDescription" class="form-control" />
-        </div>
-        <div class="col-md-5">
-          <em *ngIf="validateControl('shortDescription') && hasError('shortDescription', 'required')">Short description is required</em>
-          <em *ngIf="validateControl('shortDescription') && hasError('shortDescription', 'maxlength')">Short description cannot be longer than 70 characters.</em>
-          <em *ngIf="validateControl('shortDescription') && hasError('shortDescription', 'minlength')">Short description cannot be shorter than 10 characters.</em>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="longDescription" class="control-label col-md-2">Long description: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="longDescription" id="longDescription" class="form-control" />
-        </div>
-        <div class="col-md-5">
-          <em *ngIf="validateControl('longDescription') && hasError('longDescription', 'required')">Long description is required</em>
-          <em *ngIf="validateControl('longDescription') && hasError('longDescription', 'maxlength')">Long description cannot be longer than 450 characters.</em>
-          <em *ngIf="validateControl('longDescription') && hasError('longDescription', 'minlength')">Long description cannot be shorter than 30 characters.</em>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="imageUrl" class="control-label col-md-2">Url: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="imageUrl" id="imageUrl" class="form-control" />
-        </div>
-        <div class="col-md-5">
-          <em *ngIf="validateControl('imageUrl') && hasError('imageUrl', 'maxlength')">Maximum allowed length is 100 characters.</em>
-          <em *ngIf="validateControl('imageUrl') && hasError('imageUrl', 'minlength')">Maximum allowed length is 15 characters.</em>
-        </div>
-      </div>
-
-      <br><br>
-      <div class="form-group">
-        <div class="col-md-offset-5 col-md-1">
-          <button type="submit" class="btn btn-info" [disabled]="!advertForm.valid">Update</button>
-        </div>
-        <div class="col-md-1">
-          <button type="button" class="btn btn-danger" (click)="redirectToAdvertList()">Cancel</button>
-        </div>
-      </div>
-
+<div class="form-container col-6 m-auto">
+  <div class="container-fluid">
+    <div class="form-title">
+      <h3 class="text-muted">{{ pageTitle }}</h3>
     </div>
-  </form>
 
-  <app-success-modal [modalHeaderText]="'Action succeed'"
-                     [modalBodyText]="successMessage"
-                     [okButtonText]="'OK'"
-                     (redirectOnOK)="redirectToAdvertList()"></app-success-modal>
+    <form [formGroup]="advertForm" autocomplete="off" novalidate (ngSubmit)="updateAdvert(advertForm.value)">
+      <div class="form-horizontal well">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fab fa-tumblr"></i></span>
+            </div>
+            <input type="text" formControlName="title" id="title" class="form-control" placeholder="Title" />
+          </div>
+          <div class="error-description">
+            <em *ngIf="validateControl('title') && hasError('title', 'required')">Title is required</em>
+            <em *ngIf="validateControl('title') && hasError('title', 'maxlength')">Maximum allowed length is 40 characters.</em>
+            <em *ngIf="validateControl('title') && hasError('title', 'minlength')">Minimum allowed length is 6 characters.</em>
+          </div>
+        </div>
 
-  <app-error-modal [modalHeaderText]="'Action failed'"
-                   [modalBodyText]="errorMessage"
-                   [okButtonText]="'OK'"></app-error-modal>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fab fa-stripe-s"></i></span>
+            </div>
+            <input type="text" formControlName="shortDescription" id="shortDescription" class="form-control" placeholder="Short description" />
+          </div>
+          <div class="error-description">
+            <em *ngIf="validateControl('shortDescription') && hasError('shortDescription', 'required')">Short description is required</em>
+            <em *ngIf="validateControl('shortDescription') && hasError('shortDescription', 'maxlength')">Short description cannot be longer than 70 characters.</em>
+            <em *ngIf="validateControl('shortDescription') && hasError('shortDescription', 'minlength')">Short description cannot be shorter than 10 characters.</em>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="far fa-list-alt"></i></span>
+            </div>
+            <input type="text" formControlName="longDescription" id="longDescription" class="form-control" placeholder="Long description" />
+          </div>
+          <div class="error-description">
+            <em *ngIf="validateControl('longDescription') && hasError('longDescription', 'required')">Long description is required</em>
+            <em *ngIf="validateControl('longDescription') && hasError('longDescription', 'maxlength')">Long description cannot be longer than 450 characters.</em>
+            <em *ngIf="validateControl('longDescription') && hasError('longDescription', 'minlength')">Long description cannot be shorter than 30 characters.</em>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="far fa-image"></i></span>
+            </div>
+            <input type="text" formControlName="imageUrl" id="imageUrl" class="form-control" placeholder="Image URL" />
+          </div>
+
+          <div class="error-description">
+            <em *ngIf="validateControl('imageUrl') && hasError('imageUrl', 'maxlength')">Maximum allowed length is 100 characters.</em>
+            <em *ngIf="validateControl('imageUrl') && hasError('imageUrl', 'minlength')">Maximum allowed length is 15 characters.</em>
+            <em *ngIf="validateControl('imageUrl') && hasError('imageUrl', 'required')">Image URL is required.</em>
+            <em *ngIf="validateControl('imageUrl') && hasError('imageUrl', 'pattern')">Wrong URL format.</em>
+          </div>
+        </div>
+
+        <div class="form-button-container col-6 ml-auto">
+          <button type="submit" class="btn btn-info m-2" [disabled]="!advertForm.valid">Update</button>
+          <button type="button" class="btn btn-danger m-2" (click)="redirectToAdvertList()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 .navbar {
   border-radius: 5px;
+  margin-bottom: 1rem;
 }
 
 .navbar-logo img {
@@ -8,13 +9,14 @@
 }
 
 .nav-item {
-  transition: 0.5s;
+  margin: 0px 2px;
+  transition: 0.2s;
 }
 
 .nav-item:hover {
   background-color: rgb(128, 128, 128);
 }
 
-.nav-item:active {
-  border: 1px solid white;
+.nav-username {
+  cursor: default;
 }

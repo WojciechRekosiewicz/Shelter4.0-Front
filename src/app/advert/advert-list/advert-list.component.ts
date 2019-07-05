@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { RepositoryService } from './../../shared/services/repository.service';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { AdvertShort } from './../../_interfaces/advert-short.model';
 
 @Component({
@@ -13,14 +12,14 @@ import { AdvertShort } from './../../_interfaces/advert-short.model';
 })
 
 export class AdvertListComponent implements OnInit {
-  pageTitle = 'Advert List';
+  private pageTitle = 'Advert List';
   public adverts: AdvertShort[] = [];
   public filteredAdverts: AdvertShort[] = [];
   public loading: boolean = true;
   public errorMessage: string = '';
   public userId: string = '';
 
-  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router, private spinner: NgxSpinnerService, private route: ActivatedRoute) { }
+  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router, private route: ActivatedRoute) { }
 
   _listFilter = '';
   get listFilter(): string {
@@ -36,14 +35,16 @@ export class AdvertListComponent implements OnInit {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
 
     let apiAddress: string = "api/adverts";
-
-    this.repository.getData(apiAddress).subscribe(
-      (response: any) => {
+    this.repository.getData(apiAddress)
+      .subscribe(
+        (response: any) => {
         this.adverts = response['result'] as AdvertShort[];
-        this.filteredAdverts = this.performFilter(this.listFilter);
-      },
-      error => this.errorMessage = <any>error
-    );
+          this.filteredAdverts = this.performFilter(this.listFilter);
+        },
+        error => {
+          this.errorMessage = <any>error
+        }
+      );
   }
 
   performFilter(filterBy: string): AdvertShort[] {
@@ -51,18 +52,6 @@ export class AdvertListComponent implements OnInit {
     return this.adverts.filter((advert: AdvertShort) =>
       advert.title.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
-
-  //public getAllOwners() {
-  //  let apiAddress: string = "api/adverts";
-  //  this.repository.getData(apiAddress)
-  //    .subscribe(res => {
-  //      this.adverts = res as AdvertShort[];
-  //    },
-  //      (error) => {
-  //        this.errorHandler.handleError(error);
-  //        this.errorMessage = this.errorHandler.errorMessage;
-  //      })
-  //}
 
   public getAdvertDetails(id) {
     let detailsUrl: string = `/advert/details/${id}`
@@ -90,7 +79,7 @@ export class AdvertListComponent implements OnInit {
     }
   }
 
-  public isAuthorised(authorId) {
-    return authorId == this.userId;
+  public isAuthorized(authorId) {
+    return authorId === this.userId;
   }
 }

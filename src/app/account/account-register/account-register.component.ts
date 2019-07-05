@@ -12,6 +12,7 @@ import { RegisterModel } from './../../_interfaces/register.model';
   styleUrls: ['./account-register.component.css']
 })
 export class AccountRegisterComponent implements OnInit {
+  public pageTitle: string = 'Register';
   public errorMessage: string = '';
   public registerForm: FormGroup;
 

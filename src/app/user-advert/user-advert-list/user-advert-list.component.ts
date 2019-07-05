@@ -35,9 +35,7 @@ export class UserAdvertListComponent implements OnInit {
 
   ngOnInit() {
     this.listFilter = this.route.snapshot.queryParamMap.get('filterBy') || '';
-
     this.updateUserId();
-
 
     let apiAddress: string = "api/adverts";
     //this.repository.getData(apiAddress)

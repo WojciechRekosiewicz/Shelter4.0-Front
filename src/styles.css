@@ -32,11 +32,31 @@ body {
 }
 
 .advert-body-container img {
-  width: 800px;
-  height: 600px;
+  height: 400px;
 }
 
 .advert-body-container {
   margin: auto;
   word-wrap: break-word;
+}
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: 0.5s;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.form-container:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.error-description {
+  height: 0.8rem;
+  text-align: center;
+}
+
+.form-title {
+  text-align: center;
 }

@@ -5,6 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './error-modal.component.html',
   styleUrls: ['./error-modal.component.css', '../modal-shared.component.css']
 })
+
 export class ErrorModalComponent implements OnInit {
   @Input() public modalHeaderText: string;
   @Input() public modalBodyText: string;
@@ -13,6 +14,9 @@ export class ErrorModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('#errorModal').on('hidden.bs.modal', function () {
+      window.location.reload();
+    });
   }
 
 }

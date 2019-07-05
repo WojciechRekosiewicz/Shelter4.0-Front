@@ -1,51 +1,45 @@
-<div class="container-fluid">
-  <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="loginUser(loginForm.value)">
-    <div class="form-horizontal well">
+<div class="form-container col-5 m-auto">
+  <div class="form-title">
+    <h3 class="text-muted">{{ pageTitle }}</h3>
+  </div>
 
-      <div class="form-group">
-        <label for="email" class="control-label col-md-2">E-mail: </label>
-        <div class="col-md-5">
-          <input type="text" formControlName="email" id="email" class="form-control" />
+  <div class="container-fluid">
+    <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="loginUser(loginForm.value)">
+      <div class="form-horizontal well">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
+            </div>
+            <input type="text" formControlName="email" id="email" class="form-control" placeholder="Enter e-mail address" />
+          </div>
+          <div class="error-description">
+            <p *ngIf="validateControl('email') && hasError('email', 'required')">Email is required</p>
+            <p *ngIf="validateControl('email') && hasError('email', 'minlength')">Email is too short</p>
+            <p *ngIf="validateControl('email') && hasError('email', 'maxlength')">Email is too long</p>
+            <p *ngIf="validateControl('email') && hasError('email', 'email')">Invalid e-mail format</p>
+          </div>
         </div>
-        <div class="col-md-5">
-          <p *ngIf="validateControl('email') && hasError('email', 'required')">Email is required</p>
-          <p *ngIf="validateControl('email') && hasError('email', 'minlength')">Email is too short</p>
-          <p *ngIf="validateControl('email') && hasError('email', 'maxlength')">Email is too long</p>
-          <p *ngIf="validateControl('email') && hasError('email', 'email')">Invalid e-mail format</p>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+            </div>
+            <input type="password" formControlName="password" id="password" class="form-control" placeholder="Enter password" />
+          </div>
+          <div class="error-description">
+            <p *ngIf="validateControl('password') && hasError('password', 'required')">Password is required</p>
+            <p *ngIf="validateControl('password') && hasError('password', 'maxlength')">Password is too long.</p>
+            <p *ngIf="validateControl('password') && hasError('password', 'minlength')">Password is too short.</p>
+          </div>
+        </div>
+
+        <div class="form-button-container m-auto">
+          <button type="submit" class="btn btn-info m-2" [disabled]="!loginForm.valid">Login</button>
+          <button type="button" class="btn btn-danger m-2" (click)="redirectToAdvertListPage()">Cancel</button>
         </div>
       </div>
-
-      <div class="form-group">
-        <label for="passwordRepeat" class="control-label col-md-2">Password: </label>
-        <div class="col-md-5">
-          <input type="password" formControlName="password" id="password" class="form-control" />
-        </div>
-        <div class="col-md-5">
-          <p *ngIf="validateControl('password') && hasError('password', 'required')">Password is required</p>
-          <p *ngIf="validateControl('password') && hasError('password', 'maxlength')">Password is too long.</p>
-          <p *ngIf="validateControl('password') && hasError('password', 'minlength')">Password is too short.</p>
-        </div>
-      </div>
-
-      <br><br>
-
-      <div class="form-group">
-        <div class="col-md-offset-5 col-md-1">
-          <button type="submit" class="btn btn-info" [disabled]="!loginForm.valid">Login</button>
-        </div>
-        <div class="col-md-1">
-          <button type="button" class="btn btn-danger" (click)="redirectToAdvertList()">Cancel</button>
-        </div>
-      </div>
-
-    </div>
-  </form>
-
-  <app-success-modal [modalHeaderText]="'User logged in'"
-                     [modalBodyText]="'Action completed successfully'" [okButtonText]="'OK'"
-                     (redirectOnOK)="redirectWithPageReload()"></app-success-modal>
-
-  <app-error-modal [modalHeaderText]="errorTitle"
-                   [modalBodyText]="errorMessage" [okButtonText]="'OK'"></app-error-modal>
-
+    </form>
+  </div>
 </div>
