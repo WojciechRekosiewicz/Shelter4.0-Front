@@ -1,4 +1,4 @@
-<div class="well">
+<div *ngIf="user != undefined" class="well">
   <button type="button" id="details" class="btn btn-default"
           [routerLink]="['/advert/list']" queryParamsHandling="preserve">
     <!-- (click)="returnBack()"-->
