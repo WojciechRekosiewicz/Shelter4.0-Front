@@ -12,7 +12,8 @@
       <div class="advert-button-container ml-auto">
         <div class="row">
           <div class="m-1">
-            <button *ngIf="canReserve(advert?.authorId)" type="submit" class="btn btn-info" (click)="reserveAdvert()">Reserve</button>
+            <!-- [routerLink]="['/advert/details', advert.advertId]"-->
+            <button *ngIf="canReserve()" type="submit" class="btn btn-info" [routerLink]="['/advert/reserve', advert.advertId]" (click)="reserveAdvert()">Reserve</button>
           </div>
           <div class="m-1">
             <button type="button" id="returnBtn" class="btn btn-danger"
