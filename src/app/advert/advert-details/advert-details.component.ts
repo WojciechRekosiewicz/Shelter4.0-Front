@@ -91,7 +91,7 @@ export class AdvertDetailsComponent implements OnInit {
     console.log("this.advert.reservingId " + this.advert.reservingId);
     this.advert.reservingId = this.getUserId();
 
-    let apiUrl = `api/adverts/reserve/${this.advert.advertId}`;
+    let apiUrl = `api/adverts/${this.advert.advertId}/reserve`;
     this.repository.update(apiUrl, this.advert)
       .subscribe(res => {
         this.successMessage = res['message'];

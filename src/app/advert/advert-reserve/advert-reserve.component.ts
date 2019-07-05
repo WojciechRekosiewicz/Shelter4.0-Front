@@ -46,7 +46,7 @@ export class AdvertReserveComponent implements OnInit {
   getMail(id) {
 
     let apiUrl: string = `api/users/${id}`;
-    this.repository.getData(apiUrl).subscribe(
+    let data = this.repository.getData(apiUrl).subscribe(
       user => this.onUserRetrieved(<any>user),
       error => this.errorMessage = <any>error);
 
