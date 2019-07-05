@@ -1,0 +1,26 @@
+<div class="well">
+  <button type="button" id="details" class="btn btn-default"
+          [routerLink]="['/advert/list']" queryParamsHandling="preserve">
+    <!-- (click)="returnBack()"-->
+    Return
+  </button>
+
+  <div>
+  You reserved animal. Here you have adress to contact the owner:
+  </div>
+  <div>
+    <b>email: {{ user.email }}</b>
+   <div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <strong>You reserved:</strong>
+      </div>
+      <div class="col-md-3">
+        {{advert?.title}}
+      </div>
+    </div>
+  </div>
+</div>
+

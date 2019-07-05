@@ -3,17 +3,20 @@ import { Advert } from './../../_interfaces/advert.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RepositoryService } from './../../shared/services/repository.service';
 import { ErrorHandlerService } from './../../shared/services/error-handler.service';
+import { User } from 'src/app/_interfaces/user.model ';
+import { Guid } from 'guid-typescript';
 
 @Component({
-  selector: 'app-adver-details',
-  templateUrl: './advert-details.component.html',
-  styleUrls: ['./advert-details.component.css']
+  selector: 'app-advert-reserve',
+  templateUrl: './advert-reserve.component.html',
+  styleUrls: ['./advert-reserve.component.css']
 })
-export class AdvertDetailsComponent implements OnInit {
-  pageTitle = 'Advert Detail';
-  public successMessage: string = '';
+export class AdvertReserveComponent implements OnInit {
+  pageTitle = 'Advert Reserve';
   advert: Advert;
+  user: User;
   public errorMessage: string = '';
+  authId: Guid;
 
   constructor(private repository: RepositoryService, private router: Router,
     private activeRoute: ActivatedRoute, private errorHandler: ErrorHandlerService) { }
@@ -21,21 +24,55 @@ export class AdvertDetailsComponent implements OnInit {
   ngOnInit() {
     const id = +this.activeRoute.snapshot.paramMap.get('id');
     this.getAdvert(id);
+   
+   // this.getAdvertDetails(id);
   }
 
-  getAdvert(id: number) {
+  //getAdvertDetails(id: number) {
+  // // let id: string = this.activeRoute.snapshot.params['id'];
+  //  let apiUrl: string = `api/adverts/${id}`;
 
+  //  this.repository.getData(apiUrl)
+  //    .subscribe(res => {
+  //      this.advert = res as Advert;
+  //    },
+  //      (error) => {
+  //        this.errorHandler.handleError(error);
+  //        this.errorMessage = this.errorHandler.errorMessage;
+  //      })
+  //}
+
+
+  getMail(id) {
+
+    let apiUrl: string = `api/users/${id}`;
+    let data = this.repository.getData(apiUrl).subscribe(
+      user => this.onUserRetrieved(<any>user),
+      error => this.errorMessage = <any>error);
+
+  }
+
+  onUserRetrieved(user: User): void {
+    this.user = user;
+  }
+
+
+  getAdvert(id: number) {
+    
     let apiUrl: string = `api/adverts/${id}`;
     this.repository.getData(apiUrl).subscribe(
       advert => this.onAdvertRetrieved(<any> advert),
       error => this.errorMessage = <any>error);
+ 
+  
   }
 
-  onAdvertRetrieved(advert: Advert): void {
+  onAdvertRetrieved(advert: Advert): void {   
     this.advert = advert;
-
+    this.authId = this.advert.authorId;
+    this.getMail(this.authId);
     if (this.advert) {
-      this.pageTitle = `Product Detail: ${this.advert.title}`;
+      this.pageTitle = `Advert Reserve: ${this.advert.title}`;
     } else {
       this.pageTitle = 'No product found';
     }
@@ -54,41 +91,16 @@ export class AdvertDetailsComponent implements OnInit {
 
 
   public canReserve() {
-    
     let userId = this.getUserId();
-
     if (userId == null) {
       return false;
     }
-    else if (userId != this.advert.authorId) {
-      
-      return true
+    else {
+      return userId != this.advert.authorId;
     }
   }
 
   reserveAdvert() {
-    //this.advert.title = advertFormValue.title;
-    //this.advert.imageUrl = advertFormValue.imageUrl;
-    //this.advert.shortDescription = advertFormValue.shortDescription;
-    //this.advert.longDescription = advertFormValue.longDescription;
-    console.log("getUserId " + this.getUserId());
-    console.log("this.advert.reservingId " + this.advert.reservingId);
-    this.advert.reservingId = this.getUserId();
-
-    let apiUrl = `api/adverts/${this.advert.advertId}/reserve`;
-    this.repository.update(apiUrl, this.advert)
-      .subscribe(res => {
-        this.successMessage = res['message'];
-      },
-        (error => {
-          this.errorHandler.handleError(error);
-          this.errorMessage = this.errorHandler.errorMessage;
-        })
-      )
- 
-   // this.advert.reservingId = this.getUserId();
-    console.log("getUserId " + this.getUserId());
-    console.log("this.advert.reservingId " + this.advert.reservingId);
   }
 
   public returnBack() {
